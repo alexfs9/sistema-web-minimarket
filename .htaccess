@@ -1,0 +1,7 @@
+RewriteEngine On
+Options All -Indexes
+
+RewriteRule ^([a-z\-]+)$ index.php?vista=$1
+RewriteRule ^([a-z]+)/([a-z]+)/([a-z\-\d]+)$ index.php?vista=$1&accion=$2&nombre=$3
+RewriteRule ^([a-z]+)/([a-z]+)$ index.php?vista=$1&accion=$2
+RewriteRule ^([a-z]+)/(\d+)/([a-z]+)$ index.php?vista=$1&id=$2&accion=$3

@@ -1,0 +1,21 @@
+<?php
+echo '<tr>';
+echo '<th scope="row">' . $producto['idProducto'] . '</th>';
+echo '<td>' . $producto['nombre'] . '</td>';
+echo '<td>' . $producto['categoria'] . '</td>';
+echo '<td>' . $producto['proveedor'] . '</td>';
+echo '<td>' . $producto['precio'] . '</td>';
+echo '<td>' . $producto['stock'] . '</td>';
+echo '<td>' . $producto['oferta'] . '</td>';
+echo '<td>';
+echo '<img src="' . RUTA_RAIZ_WEB . '/app/vistas/img/subidas/' . $producto['imagen'] . '" class="img-fluid border border-1 border-success" alt="alt" style="width: 4rem;" />';
+echo '</td>';
+echo '<td>';
+echo '<a href="' . RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/modificar' . '" class="mb-1 btn btn-warning">';
+echo '<i class="fa-solid fa-pencil fa-xl" style="color: #ffffff;"></i>';
+echo '</a>';
+echo '<a href="' . RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/eliminar' . '" class="mb-1 btn btn-danger">';
+echo '<i class="fa-sharp fa-solid fa-trash fa-xl" style="color: #ffffff;"></i>';
+echo '</a>';
+echo '</td>';
+echo '</tr>';
