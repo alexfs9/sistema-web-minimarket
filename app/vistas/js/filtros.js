@@ -6,25 +6,30 @@ const stock = $('#stock');
 const btnFiltrar = $('#filtrar');
 
 const filtros = [categorias, proveedores, precio, stock];
+const propiedades = ['selectedIndex', 'disabled'];
 
-function limpiarFiltros() {
+function recorrerFiltros(propiedad, estado) {
     filtros.forEach(function(filtro) {
         if (filtro != null) {
-            filtro.prop('selectedIndex', 0);
+            if (propiedad === 'selectedIndex') {
+                // Primer índice
+                filtro.prop(propiedad, 0);
+            } else {
+                // Deshabilitando botones, selectores
+                filtro.prop(propiedad, estado)
+            }
         }
     });
 }
 
 function cambiarEstadoFiltros(estado) {
     if (estado === true) {
-        limpiarFiltros();
+        // Seleccionando el primer índice de los selectores
+        recorrerFiltros(propiedades[0], estado);
     }
-    filtros.forEach(function(filtro){
-        if (filtro != null) {
-            filtro.prop('disabled', estado);
-        }
-    });
-    btnFiltrar.prop('disabled', estado);
+    // Desabilitando los selectores y botones
+    recorrerFiltros(propiedades[1], estado);
+    btnFiltrar.prop(propiedades[1], estado);
 }
 
 activarFiltros.addEventListener('change', function() {

@@ -1,0 +1,12 @@
+:root {
+    --color-seccion: #EAF2FD;
+}
+
+.cambio-color {
+    background-color: var(--color-seccion);
+}
+
+.parrafos {
+    text-align: justify;
+    padding-right: 1rem;
+}

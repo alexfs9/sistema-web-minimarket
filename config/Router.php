@@ -31,7 +31,8 @@
 require_once RUTA_RAIZ_PHP . '/app/controladores/ProductoControlador.php';
 require_once RUTA_RAIZ_PHP . '/app/controladores/ProveedorControlador.php';
 
-$vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'mi-perfil', 'categorias', 'proveedores', 'ventas', 'clientes');
+$vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'mi-perfil', 
+                'categorias', 'proveedores', 'ventas', 'clientes');
 $acciones = array('registrar', 'modificar', 'eliminar', 'ver');
 
 function verificarLogeoAdmin() {
@@ -43,7 +44,7 @@ function noEncontrado() {
     require_once RUTA_RAIZ_PHP . '/app/vistas/404.php';
 }
 
-$tipoUsuario = 'admin'; // valores posibles: cliente ó admin
+$tipoUsuario = 'cliente'; // valores posibles: cliente ó admin
 
 $cantidadVariablesRecibidas = count($_GET);
 
@@ -110,5 +111,6 @@ if ($cantidadVariablesRecibidas != 0) {
         noEncontrado();
     }
 } else {
+    $archivosCss = array('principal');
     require_once RUTA_RAIZ_PHP . '/app/vistas/Principal.php';
 }
