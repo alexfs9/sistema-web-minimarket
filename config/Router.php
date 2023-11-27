@@ -1,4 +1,5 @@
 <?php
+
 /*
 
 -- RUTAS DEL SISTEMA --
@@ -32,19 +33,22 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/ProductoControlador.php';
 require_once RUTA_RAIZ_PHP . '/app/controladores/ProveedorControlador.php';
 
 $vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'mi-perfil', 
-                'categorias', 'proveedores', 'ventas', 'clientes');
+            'categorias', 'proveedores', 'ventas', 'clientes', 'sugerencias', 
+            'reclamaciones', 'cerrar-sesion');
 $acciones = array('registrar', 'modificar', 'eliminar', 'ver');
 
-function verificarLogeoAdmin() {
-    //verifica si se logeo como admin
-    //quiza usar sesiones (tema s.11)
+function esAdmin() {
+    if (defined('CUENTA_ACTUAL')) {
+        if (CUENTA_ACTUAL->getRol() == 'Administrador') {
+            return true;
+        }
+    }
+    return false;
 }
 
-function noEncontrado() {
-    require_once RUTA_RAIZ_PHP . '/app/vistas/404.php';
+function mostrarVista($archivo, $archivosCss, $archivosJs) {
+    require_once RUTA_RAIZ_PHP . '/app/vistas/' . $archivo . '.php';
 }
-
-$tipoUsuario = 'cliente'; // valores posibles: cliente ó admin
 
 $cantidadVariablesRecibidas = count($_GET);
 
@@ -63,9 +67,9 @@ if ($cantidadVariablesRecibidas != 0) {
             
             if (!isset($_GET['accion'])) {
                 if ($_GET['vista'] == 'productos') {
-                    if ($tipoUsuario == 'admin') {
+                    if (esAdmin()) {
                         $entidad->cargarVistaLista();
-                    } elseif ($tipoUsuario == 'cliente') {
+                    } else {
                         $entidad->cargarVistaCatalogo();
                     }
                 } else {
@@ -77,7 +81,7 @@ if ($cantidadVariablesRecibidas != 0) {
                         if ($_GET['accion'] == 'registrar') {
                             $entidad->cargarVistaRegistrar();
                         } else {
-                            noEncontrado();
+                            mostrarVista('404', null, null);
                         }
                         break;
                     case 3:
@@ -86,7 +90,7 @@ if ($cantidadVariablesRecibidas != 0) {
                                 if ($_GET['vista'] == 'productos') {
                                     $entidad->cargarVistaVer();
                                 } else {
-                                    noEncontrado();
+                                    mostrarVista('404', null, null);
                                 }
                                 break;
                             case 'modificar':
@@ -96,21 +100,46 @@ if ($cantidadVariablesRecibidas != 0) {
                                 $entidad->cargarVistaEliminar();
                                 break;
                             default:
-                                noEncontrado();
+                                mostrarVista('404', null, null);
                                 break;
                         }
                         break;
                 }
             }
         } else {
-            //redireccionar a pagina correspondiente
-            //verificar logeo como admin en las paginas especificadas en las rutas
-            echo 'se muestra vista de ' . $_GET['vista'];
+            switch ($_GET['vista']) {
+                case 'iniciar-sesion':
+                    mostrarVista('IniciarSesion', array('iniciarSesion'), array('iniciarSesion'));
+                    break;
+                case 'mi-perfil':
+                    mostrarVista('MiPerfil', null, null);
+                    break;
+                case 'carrito':
+                    mostrarVista('Carrito', null, null);
+                    break;
+                case 'sugerencias':
+                    mostrarVista('Sugerencias', null, null);
+                    break;
+                case 'reclamaciones':
+                    mostrarVista('Reclamaciones', null, null);
+                    break;
+                case 'ventas':
+                    mostrarVista('Ventas', null, null);
+                    break;
+                case 'clientes':
+                    mostrarVista('Clientes', null, null);
+                    break;
+                case 'categorias':
+                    mostrarVista('Categorias', null, null);
+                    break;
+                case 'cerrar-sesion':
+                    mostrarVista('CerrarSesion', null, null);
+                    break;
+            }
         }
     } else {
-        noEncontrado();
+        mostrarVista('404', null, null);
     }
 } else {
-    $archivosCss = array('principal');
-    require_once RUTA_RAIZ_PHP . '/app/vistas/Principal.php';
+    mostrarVista('Principal', array('principal'), null);
 }

@@ -1,5 +1,4 @@
 <?php
-
 echo '<div class="mt-1 mb-1 card" id="producto-' . $producto['idProducto'] . '" style="width: 17rem;">';
 echo '<div class="position-relative">';
 if ($producto['oferta'] != 0) {
@@ -36,4 +35,13 @@ if ($producto['stock'] == 0) {
 echo '<input type="button" value="Añadir al carrito" class="mt-1 btn btn-primary btn-sm" ' . $desactivado . '/>';
 echo '</div>';
 echo '</div>';
+$tildes = array('á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ', 'Á', 'É', 'Í', 'Ó', 'Ú', 'Ü', 'Ñ');
+$sinTildes = array('a', 'e', 'i', 'o', 'u', 'u', 'n', 'A', 'E', 'I', 'O', 'U', 'U', 'N');
+$nombreIdeal = str_replace(' ', '-', strtolower($producto['nombre']));
+$nombreIdeal = str_replace(['[', ']'], '', $nombreIdeal);
+$nombreIdeal = str_replace('.', '-', $nombreIdeal);
+$nombreIdeal = strtr($nombreIdeal, array_combine($tildes, $sinTildes));
+echo '<a href="' . RUTA_RAIZ_WEB . '/productos/ver/' . $producto['idProducto'] . '-' . $nombreIdeal . '" class="m-2 mt-0 btn btn-danger btn-sm">';
+echo 'Ver más';
+echo '</a>';
 echo '</div>';

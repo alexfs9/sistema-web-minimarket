@@ -2,9 +2,9 @@
 insert into rol (rol) values ("Administrador");
 insert into rol (rol) values ("Cliente");
 
--- usuarios
-insert into persona (dni, nombres, apellidos, fechaNacimiento, telefono) values ("12345678", "Humberto Richard", "García Toribio", "2000-04-15", "123456789");
-insert into cuenta (idPersona, usuario, correo, contrasena, idRol) values (1, "admin", "admin@gmail.com", md5("123"), 1);
+-- usuariospersona
+call registrarCuenta("admin@gmail.com", md5("123"), 1, "12345678", "Humberto Richard", "García Toribio", "2000-04-15", "123456789");
+call registrarCuenta("cliente@gmail.com", md5("123"), 2, "87654321", "Miau", "Flores Zevallos",  "1999-10-01", "852364179");
 
 -- categorías
 insert into categoria (categoria) values ('Abarrotes');

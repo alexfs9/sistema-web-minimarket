@@ -1,9 +1,6 @@
 <?php
 
-$rutaRaizWeb = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', __DIR__));
-$rutaRaizPhp = str_replace('\\', '/', __DIR__);
+session_start();
 
-define('RUTA_RAIZ_WEB', $rutaRaizWeb);
-define('RUTA_RAIZ_PHP', $rutaRaizPhp);
-
+require_once 'Constantes.php';
 require_once 'config/Router.php';

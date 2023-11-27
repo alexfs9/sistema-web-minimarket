@@ -1,0 +1,20 @@
+body {
+    background-image: url("../img/aplicacion/fondo.jpg");
+    background-color: cornsilk;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+}
+
+h1 {
+    color: #176B87;
+}
+
+i {
+    color: #0E2954;
+}

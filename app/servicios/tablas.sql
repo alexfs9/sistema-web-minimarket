@@ -7,25 +7,23 @@ create table rol(
     rol varchar(40) unique not null
 );
 
-create table persona(
-	idPersona int primary key auto_increment,
-    dni varchar(8) unique default "-",
-    nombres varchar(50) not null,
-    apellidos varchar(50) not null,
-    fechaNacimiento date not null,
-    telefono varchar(9) unique not null
-);
-
 create table cuenta(
 	idCuenta int primary key auto_increment,
-    idPersona int unique not null,
-    usuario varchar(20) unique not null,
     correo varchar(70) unique not null,
     contrasena varchar(32) not null,
     foto varchar(100) default 'usuarioDefecto.png',
     idRol tinyint not null,
-    constraint fk_cue_per foreign key (idPersona) references persona(idPersona),
     constraint fk_cue_rol foreign key (idRol) references rol(idRol)
+);
+
+create table persona(
+	idCuenta int not null,
+    dni varchar(8) unique default "-",
+    nombres varchar(50) not null,
+    apellidos varchar(50) not null,
+    fechaNacimiento date not null,
+    telefono varchar(9) unique not null,
+    constraint fk_per_cue foreign key (idCuenta) references cuenta(idCuenta)
 );
 
 create table categoria(
@@ -61,12 +59,12 @@ create table producto(
 
 create table venta(
 	idVenta int primary key auto_increment,
-    idCliente int not null,
+    idCuenta int not null,
     fecha datetime not null,
     idTipoEntrega tinyint not null,
     direccion varchar(100) default "-",
     precioTotal float not null,
-    constraint fk_ven_cli foreign key (idCliente) references persona(idPersona),
+    constraint fk_ven_cli foreign key (idCuenta) references cuenta(idCuenta),
     constraint fk_ven_tip foreign key (idTipoEntrega) references tipoEntrega(idTipoEntrega)
 );
 

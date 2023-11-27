@@ -21,7 +21,7 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/FiltrosControlador.php';
         <?php
         $filtrosControlador = new FiltrosControlador();
         $filtrosControlador->cargarFiltro('categorias', 'categoria');
-        if ($tipoUsuario != 'cliente') {
+        if (esAdmin()) {
             $filtrosControlador->cargarFiltro('proveedores', 'proveedor');
         }
         ?>

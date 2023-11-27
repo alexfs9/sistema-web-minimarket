@@ -7,27 +7,27 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dto/MetodosVista.php';
 class ProductoControlador implements MetodosVista {
 
     public function cargarVistaCatalogo() {
-        require_once RUTA_RAIZ_PHP . '/app/vistas/CatalogoProductos.php';
+        mostrarVista('CatalogoProductos', null, null);
     }
 
     public function cargarVistaLista() {
-        require_once RUTA_RAIZ_PHP . '/app/vistas/ListaProductos.php';
+        mostrarVista('ListaProductos', null, null);
     }
 
     public function cargarVistaVer() {
-        echo 'info. de: ' . $_GET['nombre'];
+        mostrarVista('VerProducto', null, null);
     }
 
     public function cargarVistaRegistrar() {
-        echo 'registro de producto';
+        mostrarVista('RegistrarProducto', null, null);
     }
 
     public function cargarVistaModificar() {
-        echo 'modificar producto - ' . $_GET['id'];
+        mostrarVista('ModificarProducto', null, null);
     }
 
     public function cargarVistaEliminar() {
-        echo 'eliminar producto - ' . $_GET['id'];
+        mostrarVista('EliminarProducto', null, null);
     }
 
     public function cargarProductosCatalogo() {

@@ -5,18 +5,18 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dto/MetodosVista.php';
 class ProveedorControlador implements MetodosVista {
 
     public function cargarVistaLista() {
-        echo 'lista de proveedores';
+        mostrarVista('ListaProveedores', null, null);
     }
 
     public function CargarVistaRegistrar() {
-        echo 'registrar proveedor';
+        mostrarVista('RegistrarProveedor', null, null);
     }
 
     public function cargarVistaModificar() {
-        echo 'modificar proveedor - ' . $_GET['id'];
+        mostrarVista('ModificarProveedor', null, null);
     }
 
     public function cargarVistaEliminar() {
-        echo 'eliminar proveedor - ' . $_GET['id'];
+        mostrarVista('EliminarProveedor', null, null);
     }
 }

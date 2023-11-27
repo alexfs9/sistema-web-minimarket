@@ -1,10 +1,15 @@
 <?php
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
-$tipoUsuario = 'admin';
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 ?>
 <div class="mt-3 container bg-white border border-3 border-warning">
     <h1 class="text-center text-primary text-decoration-underline">PRODUCTOS</h1>
+    <div class="mb-1 d-flex flex-column">
+        <a href=<?php echo '"' . RUTA_RAIZ_WEB . '/productos/registrar"'; ?> class="mb-2 btn btn-secondary">
+            <i class="fa-solid fa-plus fa-xl" style="color: #ffffff;"></i>
+            Registrar producto
+        </a>
+    </div>
     <?php
     require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/Filtros.php';
     ?>

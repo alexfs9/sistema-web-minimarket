@@ -1,6 +1,5 @@
 <?php
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
-$tipoUsuario = 'cliente';
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 ?>
 <div class="mt-2 container">

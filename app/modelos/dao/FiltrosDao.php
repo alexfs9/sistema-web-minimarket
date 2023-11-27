@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app/servicios/Conexion.php';
+require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
 
 class FiltrosDao extends Conexion {
 
