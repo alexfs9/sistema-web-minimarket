@@ -5,18 +5,23 @@ require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
 class FiltrosDao extends Conexion {
 
     public function obtenerFiltro($filtro) {
-        if (parent::conectar()) {
+        if ($this->conectar()) {
             $nombreFiltro = ucfirst($filtro);
-            $nombreFiltro = 'id' . $nombreFiltro;
+            $nombreFiltro = 'id' . $nombreFiltro;            
             $sql = "select $nombreFiltro as id, $filtro from $filtro;";
-            $resultado = parent::getConexion()->query($sql);
-            if ($resultado) {
-                while ($fila = mysqli_fetch_assoc($resultado)) {
-                    $campo[] = $fila;
+            $sqlPreparado = $this->getConexion()->prepare($sql);
+            if ($sqlPreparado) {
+                $sqlPreparado->execute();
+                $resultado = $sqlPreparado->get_result();
+                if ($resultado) {
+                    while($fila = $resultado->fetch_assoc()) {
+                        $campo[] = $fila;
+                    }
+                    $resultado->free();
                 }
+                $sqlPreparado->close();
             }
-            mysqli_free_result($resultado);
-            parent::desconectar();
+            $this->desconectar();
         }
         return $campo;
     }

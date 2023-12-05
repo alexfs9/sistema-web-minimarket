@@ -1,0 +1,20 @@
+<input type="button" 
+    class="btn btn-outline-secondary btn-<?php echo $tamano; ?>" 
+    id="<?php echo 'disminuir-' . $idProducto; ?>" 
+    value="-" 
+    onclick="accionar('<?php echo 'disminuir-' . $idProducto; ?>')" 
+    disabled>
+<input type="number" 
+    class="form-control btn btn-<?php echo $tamano; ?>" 
+    id="<?php echo 'cantidad-' . $idProducto; ?>" 
+    value="<?php if ($stock == 0) { echo 0; } else { echo 1; } ?>" 
+    min="1" 
+    max="<?php echo $stock; ?>" 
+    placeholder="Cantidad" 
+    disabled>
+<input type="button" 
+    class="btn btn-outline-secondary btn-<?php echo $tamano; ?>" 
+    id="<?php echo 'aumentar-' . $idProducto; ?>" 
+    value="+" 
+    onclick="accionar('<?php echo 'aumentar-' . $idProducto; ?>')" 
+    <?php if ($stock == 1 || $stock == 0) { echo 'disabled'; } ?>>

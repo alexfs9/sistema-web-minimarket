@@ -7,29 +7,33 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dto/MetodosVista.php';
 class ProductoControlador implements MetodosVista {
 
     public function cargarVistaCatalogo() {
-        mostrarVista('CatalogoProductos', null, null);
+        mostrarVista('CatalogoProductos', array('catalogoProductos'), array('filtrarCatalogo', 'cantidadProducto'));
     }
 
     public function cargarVistaLista() {
-        mostrarVista('ListaProductos', null, null);
+        mostrarVista('ListaProductos', null, array('filtrarLista'));
     }
 
     public function cargarVistaVer() {
-        mostrarVista('VerProducto', null, null);
+        mostrarVista('VerProducto', null, array('cantidadProducto', 'verProducto'));
     }
 
     public function cargarVistaRegistrar() {
-        mostrarVista('RegistrarProducto', null, null);
+        mostrarVista('RegistrarProducto', null, array('registrarProducto'));
     }
 
     public function cargarVistaModificar() {
-        mostrarVista('ModificarProducto', null, null);
+        mostrarVista('ModificarProducto', null, array('registrarProducto', 'modificarProducto'));
     }
 
     public function cargarVistaEliminar() {
         mostrarVista('EliminarProducto', null, null);
     }
 
+    public function cargarCantidad($idProducto, $stock, $tamano) {
+        include RUTA_RAIZ_PHP . '/app/vistas/plantillas/producto/Cantidad.php';
+    }
+    
     public function cargarProductosCatalogo() {
         $productoDao = new ProductoDao();
         $productos = $productoDao->catalogar();

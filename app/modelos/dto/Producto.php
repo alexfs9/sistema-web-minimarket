@@ -4,21 +4,27 @@ class Producto {
 
     private $idProducto;
     private $nombre;
-    private $descripcion;
     private $categoria;
     private $proveedor;
     private $precio;
     private $stock;
+    private $oferta;
     private $imagen;
 
-    public function __construct($nombre, $descripcion, $categoria, $proveedor, $precio, $stock, $imagen) {
+    public function __construct($idProducto, $nombre, $categoria, $proveedor, $precio, $stock, $oferta, $imagen) {
+        $this->idProducto = $idProducto;
         $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
         $this->categoria = $categoria;
         $this->proveedor = $proveedor;
         $this->precio = $precio;
         $this->stock = $stock;
+        $this->oferta = $oferta;
         $this->imagen = $imagen;
+    }
+
+    public function calcularPrecioOferta() {
+        $oferta = $this->getPrecio() * $this->getOferta();
+        return round($this->getPrecio() - ($oferta / 100), 2);
     }
 
     public function getIdProducto() {
@@ -27,10 +33,6 @@ class Producto {
 
     public function getNombre() {
         return $this->nombre;
-    }
-
-    public function getDescripcion() {
-        return $this->descripcion;
     }
 
     public function getCategoria() {
@@ -49,6 +51,10 @@ class Producto {
         return $this->stock;
     }
 
+    public function getOferta() {
+        return $this->oferta;
+    }
+
     public function getImagen() {
         return $this->imagen;
     }
@@ -60,11 +66,6 @@ class Producto {
     public function setNombre($nombre): void {
         $this->nombre = $nombre;
     }
-
-    public function setDescripcion($descripcion): void {
-        $this->descripcion = $descripcion;
-    }
-
     public function setCategoria($categoria): void {
         $this->categoria = $categoria;
     }
@@ -79,6 +80,10 @@ class Producto {
 
     public function setStock($stock): void {
         $this->stock = $stock;
+    }
+
+    public function setOferta($oferta): void {
+        $this->oferta = $oferta;
     }
 
     public function setImagen($imagen): void {

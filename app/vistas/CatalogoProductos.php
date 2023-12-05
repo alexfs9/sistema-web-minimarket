@@ -8,7 +8,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/Filtros.php';
     ?>
     <div class="border rounded-3 border-info shadow-lg">
-        <div class="d-flex flex-row flex-wrap justify-content-around">
+        <div class="d-flex flex-row flex-wrap justify-content-around" id="contenedor-productos">
             <?php
             require_once RUTA_RAIZ_PHP . '/app/controladores/ProductoControlador.php';
             $catalogoControlador = new ProductoControlador();
@@ -18,6 +18,5 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     </div>
 </div>
 <?php
-$archivosJs = array('filtros');
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';
 ?>

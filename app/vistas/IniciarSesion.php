@@ -22,12 +22,17 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php'
             </label>
             <input type="password" class="form-control" id="contrasena" name="contrasena">
         </div>
-        <div class="d-flex justify-content-center mb-3">
-            <button type="button" class="btn btn-lg btn-primary" id="ingresar" name="ingresar">
+        <div class="d-flex flex-column justify-content-center mb-3">
+            <button type="button" class="mb-1 btn btn-lg btn-primary" id="ingresar" name="ingresar">
                 <i class="fa-solid fa-right-to-bracket fa-lg" style="color: #ebebeb;"></i>
                 Ingresar
             </button>
+            <button type="button" class="btn btn-lg btn-secondary" id="cancelar">
+                <i class="fa-solid fa-ban fa-xl" style="color: #ffffff;"></i>
+                Cancelar
+            </button>
         </div>
+        <input type="hidden" id="ruta" value="<?php echo RUTA_RAIZ_WEB; ?>">
         <p>¿No se ha registrado? <a href="" class="link-offset-3">Regístrese aquí.</a></p>
     </form>
 </div>

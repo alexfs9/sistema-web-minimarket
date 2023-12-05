@@ -7,15 +7,13 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dao/CuentaDao.php';
 $correo = $_POST["correo"];
 $contrasena = $_POST["contrasena"];
 
-$ingreso = new IngresoDao();
+$ingresoDao = new IngresoDao();
 
-if ($ingreso->conectar() == 1) {
-    $respuesta = $ingreso->iniciarSesion($correo, md5($contrasena));
+$respuesta = $ingresoDao->iniciarSesion($correo, md5($contrasena));
+if ($respuesta == 1) {
     session_start();
     $cuentaDao = new CuentaDao();
     $_SESSION['cuenta'] = $cuentaDao->obtenerCuenta($correo, md5($contrasena));
-} else {
-    $respuesta = "error";
 }
 
 echo json_encode($respuesta);

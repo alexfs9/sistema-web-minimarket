@@ -30,15 +30,20 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
                         social. Nos enorgullece servir a la comunidad con productos frescos, precios competitivos
                         y un ambiente seguro y agradable. Además, estamos comprometidos con prácticas comerciales
                         éticas y sostenibles, minimizando nuestro impacto en el medio ambiente y apoyando a causas
-                        locales. En San José,nuestra misión es contribuir a la calidad de vida de nuestros clientes,
+                        locales. En Mendoza, nuestra misión es contribuir a la calidad de vida de nuestros clientes,
                         brindándoles comodidad, confiabilidad y productos esenciales de alta calidad en un solo lugar.
                         Estamos aquí para satisfacer las necesidades de la comunidad y ser un socio comprometido en
                         tiempos buenos y difíciles.</p>
                 </li>
             </ul>
         </div>
-        <div class="ratio ratio-16x9 mb-2">
-            <iframe src="https://www.youtube.com/embed/2B1XUixgmWI?si=lVN87JFR9Oke-6r1" title="Video M. San José" allowfullscreen></iframe>
+        <div class="m-3 d-flex">
+            <div class="m-2">
+                <img class="img-fluid border border-success border-2 rounded shadow" src=<?php echo '"' .RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega.jpg"';?> alt="foto bodega mendoza">
+            </div>
+            <div class="m-2">
+                <img class="img-fluid border border-success border-2 rounded shadow" src=<?php echo '"' .RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega1.jpg"';?> alt="foto bodega mendoza">
+            </div>
         </div>
     </div>
 </section>
@@ -50,21 +55,21 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
             <div class="d-flex flex-column">
                 <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/direccion_icono.png"';?> alt="direccion ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Dirección</h5>
-                <p class="text-center">Av Metropolitana #300, Lima, Perú</p>
+                <p class="text-center">Asentamiento Humano villa Isolina, MZ X lote 17</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column">
                 <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/telefono-icono.png"';?> alt="teléfono ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Teléfono</h5>
-                <p class="text-center">999888777</p>
+                <p class="text-center">944 255 155</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column">
                 <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/email_icono.png"';?> alt="correo ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Correo</h5>
-                <p class="text-center">ejemplo@gmail.com</p>
+                <p class="text-center">Mendoza'store@gmail.com</p>
             </div>
         </div>
     </div>
@@ -73,7 +78,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 <section id="ubicanos">
     <h1 class="text-center">Ubícanos</h1>
     <div class="mb-2 d-flex justify-content-center align-items-center">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.7563017499873!2d-77.06043363767009!3d-11.972756594386741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce35ac372ea7%3A0xe8c3c0b3a139e708!2zTWluaU1hcmtldCBDYWbDqSAiRG9uIEpvc8OpIg!5e0!3m2!1ses-419!2spe!4v1700512869430!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d243.96717833187822!2d-77.12546631664385!3d-11.941589832856074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1701748955090!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 <section id="sugerencias" class="cambio-color">

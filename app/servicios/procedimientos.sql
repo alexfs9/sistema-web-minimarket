@@ -24,3 +24,25 @@ begin
     insert into persona (idCuenta, dni, nombres, apellidos, fechaNacimiento, telefono) values (@idCue, dni, nom, ape, fec, tel);
 end $$
 delimiter ;
+
+delimiter $$
+create procedure registrarProducto(in nom varchar(150), in cat varchar(40), in pro varchar(30), in pre float, in sto tinyint, in ofe float, in ima varchar(100))
+begin
+	declare idCat tinyint;
+    declare idProv smallint;
+    select idCategoria into idCat from categoria where categoria = cat;
+    select idProveedor into idProv from proveedor where proveedor = pro;
+    insert into producto (nombre, idCategoria, idProveedor, precio, stock, oferta, imagen) values (nom, idCat, idProv, pre, sto, ofe, ima);
+end $$
+delimiter ;
+
+delimiter $$
+create procedure modificarProducto(in id smallint, in nom varchar(150), in cat varchar(40), in pro varchar(30), in pre float, in sto tinyint, in ofe float, in ima varchar(100))
+begin
+	declare idCat tinyint;
+    declare idProv smallint;
+    select idCategoria into idCat from categoria where categoria = cat;
+    select idProveedor into idProv from proveedor where proveedor = pro;
+    update producto set nombre = nom, idCategoria = idCat, idProveedor = idProv, precio = pre, stock = sto, oferta = ofe, imagen = ima where idProducto = id;
+end $$
+delimiter ;

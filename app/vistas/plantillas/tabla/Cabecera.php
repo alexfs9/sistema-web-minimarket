@@ -1,8 +1,9 @@
-<?php
-echo '<thead>';
-echo '<tr class="table-info">';
-foreach($columnas as $columna) {
-    echo '<th>' . $columna . '</th>';
-}
-echo '</tr>';
-echo '</thead>';
+<thead>
+    <tr class="table-info">
+        <?php
+        foreach($columnas as $columna) {
+            echo '<th>' . $columna . '</th>';
+        }
+        ?>
+    </tr>
+</thead>
