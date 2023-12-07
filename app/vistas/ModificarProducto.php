@@ -7,8 +7,10 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dao/ProductoDao.php';
 $idProducto = $_GET['id'];
 $productoDao = new ProductoDao();
 $producto = $productoDao->consultar($idProducto);
+
 ?>
-<div class="container">
+
+<div class="mt-2 mb-2 container">
     <h1 class="text-center text-primary">Modificar producto</h1>
     <form enctype="multipart/form-data" class="p-3 mt-2 border border-1 rounded-3 shadow">
         <div id="mensaje" role="alert"></div>
@@ -78,6 +80,9 @@ $producto = $productoDao->consultar($idProducto);
         <input type="hidden" id="imagenActual" value="<?php echo $producto->getImagen(); ?>">
     </form>
 </div>
+
 <?php
+
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';
+
 ?>

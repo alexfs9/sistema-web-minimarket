@@ -4,8 +4,9 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 
 ?>
+
 <section id="nosotros">
-    <h1 class="mt-1 text-center">Nosotros</h1>
+    <h1 class="mt-2 text-center">Nosotros</h1>
     <div class="container">
         <div>
             <h4>Misión:</h4>
@@ -39,10 +40,10 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
         </div>
         <div class="m-3 d-flex">
             <div class="m-2">
-                <img class="img-fluid border border-success border-2 rounded shadow" src=<?php echo '"' .RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega.jpg"';?> alt="foto bodega mendoza">
+                <img class="img-fluid border border-success border-2 rounded shadow" src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega.jpg'; ?>" alt="foto bodega mendoza">
             </div>
             <div class="m-2">
-                <img class="img-fluid border border-success border-2 rounded shadow" src=<?php echo '"' .RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega1.jpg"';?> alt="foto bodega mendoza">
+                <img class="img-fluid border border-success border-2 rounded shadow" src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/fotoBodega1.jpg'; ?>" alt="foto bodega mendoza">
             </div>
         </div>
     </div>
@@ -53,21 +54,21 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     <div class="row">
         <div class="col-md-4">
             <div class="d-flex flex-column">
-                <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/direccion_icono.png"';?> alt="direccion ícono" class="img-fluid" style="width: 3rem; place-self: center;">
+                <img src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/direccion_icono.png'; ?>" alt="direccion ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Dirección</h5>
                 <p class="text-center">Asentamiento Humano villa Isolina, MZ X lote 17</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column">
-                <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/telefono-icono.png"';?> alt="teléfono ícono" class="img-fluid" style="width: 3rem; place-self: center;">
+                <img src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/telefono-icono.png'; ?>" alt="teléfono ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Teléfono</h5>
                 <p class="text-center">944 255 155</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column">
-                <img src=<?php echo '"' . RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/email_icono.png"';?> alt="correo ícono" class="img-fluid" style="width: 3rem; place-self: center;">
+                <img src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/aplicacion/email_icono.png'; ?>" alt="correo ícono" class="img-fluid" style="width: 3rem; place-self: center;">
                 <h5 class="text-decoration-underline fw-bold text-center">Correo</h5>
                 <p class="text-center">Mendoza'store@gmail.com</p>
             </div>
@@ -81,12 +82,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d243.96717833187822!2d-77.12546631664385!3d-11.941589832856074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1701748955090!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
-<section id="sugerencias" class="cambio-color">
-    <h1 class="text-center">Sugerencias</h1>
-</section>
-<section id="reclamaciones">
-    <h1 class="text-center">Reclamaciones</h1>
-</section>
+
 <?php
 
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';

@@ -15,12 +15,9 @@ class Conexion {
             die('Conexión fallida: ' . $this->conexion->connect_error);
         }
         return true;
-        //$this->conexion = mysqli_connect($this->servidor, $this->usuario, $this->contrasena, $this->nombreBd, $this->puerto);
-        //return ($this->conexion) ? true : false;
     }
 
     public function desconectar() {
-        //mysqli_close($this->conexion);
         $this->getConexion()->close();
     }
 

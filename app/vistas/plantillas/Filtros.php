@@ -34,8 +34,7 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/FiltrosControlador.php';
     <div class="row d-flex justify-content-around">
         <?php
         $filtrosControlador->cargarFiltro('categorias', 'categoria');
-        //if (esAdmin()) {
-            //$filtrosControlador->cargarFiltro('proveedores', 'proveedor');
+        if (esAdmin()) {
             ?>
             <div class="mb-2 col-12 col-md-3">
                 <label class="mb-1 form-check-label" for="stock">Stock:</label>
@@ -45,6 +44,9 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/FiltrosControlador.php';
                     <option value="2">Mayor cantidad</option>
                 </select>
             </div>
+            <?php
+        }
+        ?>
         <div class="mb-2 col-12 col-md-3">
             <label class="mb-1 form-check-label" for="precio">Precio:</label>
             <select class="form-select" id="precio">

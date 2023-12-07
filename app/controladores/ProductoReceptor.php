@@ -19,29 +19,15 @@ if ($_GET['tipo'] == 'registrar') {
         echo json_encode('error');
     }
 } elseif ($_GET['tipo'] == 'modificar') {
-    //echo json_encode(var_dump($_POST));
     if (!isset($_POST['imagenNueva'])) {
         $rutaFinal = RUTA_RAIZ_PHP . '/app/vistas/img/subidas/';
         unlink($rutaFinal . $_POST['imagenActual']);
         $nombreImagen = $_FILES['imagenNueva']['name'];
         $rutaTemp = $_FILES['imagenNueva']['tmp_name'];
         move_uploaded_file($rutaTemp, $rutaFinal . $nombreImagen);
-        //echo json_encode('se selecciono');
     } else {
         $nombreImagen = $_POST['imagenActual'];
-        //echo json_encode('no se selecciono, valor: ' . $_POST['imagenNueva']);
     }
-    //if ($_File['imagenNueva'] == null) {
-        //echo json_encode("se selecciono una imagen");
-        /*
-        $rutaFinal = RUTA_RAIZ_PHP . '/app/vistas/img/subidas/';
-        unlink($rutaFinal . $_POST['imagenActual']);
-        $nombreImagen = $_FILES['imagenNueva']['name'];
-        $rutaTemp = $_FILES['imagenNueva']['tmp_name'];
-        move_uploaded_file($rutaTemp, $rutaFinal . $nombreImagen);*/
-    //} else {
-        //echo json_encode("no se selcciono, nombre imagen:  " . $_POST['imagenNueva']);
-    //}
     $producto = new Producto($_POST['idProducto'], $_POST['nombre'], $_POST['categoria'], $_POST['proveedor'], $_POST['precio'], 
     $_POST['stock'], $_POST['oferta'], $nombreImagen);
     if ($productoDao->modificar($producto)) {

@@ -17,11 +17,11 @@ delimiter ;
 
 delimiter $$
 create procedure registrarCuenta(in cor varchar(70), in con varchar(32), in rol tinyint, in dni varchar(8), in nom varchar(50), 
-in ape varchar(50), in fec date, in tel varchar(9))
+in ape varchar(50), in tel varchar(9))
 begin
 	insert into cuenta (correo, contrasena, idRol) values (cor, con, rol);
     set @idCue = LAST_INSERT_ID();
-    insert into persona (idCuenta, dni, nombres, apellidos, fechaNacimiento, telefono) values (@idCue, dni, nom, ape, fec, tel);
+    insert into persona (idCuenta, dni, nombres, apellidos, telefono) values (@idCue, dni, nom, ape, tel);
 end $$
 delimiter ;
 
@@ -44,5 +44,12 @@ begin
     select idCategoria into idCat from categoria where categoria = cat;
     select idProveedor into idProv from proveedor where proveedor = pro;
     update producto set nombre = nom, idCategoria = idCat, idProveedor = idProv, precio = pre, stock = sto, oferta = ofe, imagen = ima where idProducto = id;
+end $$
+delimiter ;
+
+delimiter $$
+create procedure registrarSugerencia(in id int, in asu varchar(70), in sug text, in fec datetime)
+begin
+	insert into sugerencia (idCuenta, asunto, sugerencia, fecha) values (id, asu, sug, fec);
 end $$
 delimiter ;

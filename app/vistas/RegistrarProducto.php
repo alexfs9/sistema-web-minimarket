@@ -1,8 +1,11 @@
 <?php
+
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
+
 ?>
-<div class="container">
+
+<div class="mt-2 mb-2 container">
     <h1 class="text-center text-primary">Registrar producto</h1>
     <form enctype="multipart/form-data" class="p-3 mt-2 border border-1 rounded-3 shadow">
         <div id="mensaje" role="alert"></div>
@@ -61,6 +64,9 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
         <input type="hidden" id="ruta" value="<?php echo RUTA_RAIZ_WEB; ?>">
     </form>
 </div>
+
 <?php
+
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';
+
 ?>

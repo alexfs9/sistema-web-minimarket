@@ -4,10 +4,26 @@ require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
 
 class IngresoDao extends Conexion {
 
+    public function registrar($nombres, $apellidos, $dni, $telefono, $correo, $contrasena, $rol) {
+        if ($this->conectar()) {
+            $sql = 'call registrarCuenta(?, ?, ?, ?, ?, ?, ?)';
+            $sqlPreparado = $this->getConexion()->prepare($sql);
+            if ($sqlPreparado) {
+                $sqlPreparado->bind_param('ssissss', $correo, $contrasena, $rol, $dni, 
+                $nombres, $apellidos, $telefono);
+                $sqlPreparado->execute();
+                $sqlPreparado->close();
+            }
+            $this->desconectar();
+            return true;
+        }
+        return false;
+    }
+
     public function iniciarSesion($correo, $contrasena) {
-        if (parent::conectar()) {
+        if ($this->conectar()) {
             $sql = 'call iniciarSesion(?, ?, @accion);';
-            $sqlPreparado = parent::getConexion()->prepare($sql);
+            $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
                 $sqlPreparado->bind_param('ss', $correo, $contrasena);
                 $sqlPreparado->execute();

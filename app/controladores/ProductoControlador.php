@@ -7,7 +7,7 @@ require_once RUTA_RAIZ_PHP . '/app/modelos/dto/MetodosVista.php';
 class ProductoControlador implements MetodosVista {
 
     public function cargarVistaCatalogo() {
-        mostrarVista('CatalogoProductos', array('catalogoProductos'), array('filtrarCatalogo', 'cantidadProducto'));
+        mostrarVista('CatalogoProductos', array('catalogoProductos'), array('filtrarCatalogo', 'cantidadProducto', 'carrito'));
     }
 
     public function cargarVistaLista() {
@@ -15,7 +15,7 @@ class ProductoControlador implements MetodosVista {
     }
 
     public function cargarVistaVer() {
-        mostrarVista('VerProducto', null, array('cantidadProducto', 'verProducto'));
+        mostrarVista('VerProducto', null, array('cantidadProducto', 'verProducto', 'carrito'));
     }
 
     public function cargarVistaRegistrar() {
@@ -30,7 +30,7 @@ class ProductoControlador implements MetodosVista {
         mostrarVista('EliminarProducto', null, null);
     }
 
-    public function cargarCantidad($idProducto, $stock, $tamano) {
+    public function cargarCantidad($idProducto, $cantidad, $stock, $tamano) {
         include RUTA_RAIZ_PHP . '/app/vistas/plantillas/producto/Cantidad.php';
     }
     

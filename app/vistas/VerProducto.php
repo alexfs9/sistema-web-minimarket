@@ -1,11 +1,14 @@
 <?php
+
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 
 $productoDao = new ProductoDao();
 $idProducto = explode('-', $_GET['nombre'])[0];
 $producto = $productoDao->consultar($idProducto);
+
 ?>
+
 <div class="container p-2">
     <h1 class="text-center text-primary text-decoration-underline">Productos</h1>
     <div class="d-flex flex-column flex-sm-row justify-content-center">
@@ -26,9 +29,9 @@ $producto = $productoDao->consultar($idProducto);
                 if ($producto->getOferta() != 0) {
                     $precioNuevo = $producto->calcularPrecioOferta();
                     echo '<p class="card-text text-secondary text-decoration-line-through fw-semibold fs-3">S/. ' . $producto->getPrecio() . '</p>';
-                    echo '<p class="ms-3 card-text text-success fw-semibold fs-3">S/. ' . $precioNuevo . '</p>';
+                    echo '<p class="ms-3 card-text text-success fw-semibold fs-3" id="precio-' . $producto->getIdProducto() . '">S/. ' . $precioNuevo . '</p>';
                 } else {
-                    echo '<p class="card-text text-success fw-semibold fs-3">S/. ' . $producto->getPrecio() . '</p>';
+                    echo '<p class="card-text text-success fw-semibold fs-3" id="precio-' . $producto->getIdProducto() . '">S/. ' . $producto->getPrecio() . '</p>';
                 }
                 ?>
             </div>
@@ -40,10 +43,9 @@ $producto = $productoDao->consultar($idProducto);
                 echo '<div class="d-flex">';
                 echo '<div class="me-2 input-group">';
                 $productoControlador = new ProductoControlador();
-                $productoControlador->cargarCantidad($producto->getIdProducto(), $producto->getStock(), 'lg');
-                
+                $productoControlador->cargarCantidad($producto->getIdProducto(), null, $producto->getStock(), 'lg');
                 echo '</div>';
-                echo '<input type="button" value="Añadir al carrito" class="btn btn-primary btn-lg"/>';
+                echo '<input type="button" value="Añadir al carrito" id="agregar-' . $producto->getIdProducto() . '" onclick="agregarEnCarrito(' . $producto->getIdProducto() .')" class="btn btn-primary btn-lg"/>';
                 echo '</div>';
             }
             ?>
@@ -63,7 +65,11 @@ $producto = $productoDao->consultar($idProducto);
             </div>
         </div>
     </div>
+    <input type="hidden" id="ruta" value="<?php echo RUTA_RAIZ_WEB; ?>">
 </div>
+
 <?php
+
 require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';
+
 ?>

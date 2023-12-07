@@ -23,10 +23,10 @@
             Carrito
         </a>
         <?php
-        if (defined('CUENTA_ACTUAL')) {
+        if (isset($_SESSION['cuenta'])) {
             echo '<a href="' . RUTA_RAIZ_WEB . '/mi-perfil" class="ms-auto me-2 d-none d-lg-block btn btn-info rounded-pill text-white me-2">';
-            echo '<img class="img-fluid rounded-circle border border-2 border-dark" src="' . RUTA_RAIZ_WEB . '/app/vistas/img/perfil/' . CUENTA_ACTUAL->getFoto() . '" alt="foto perfil" style="width: 1.5rem; height: 1.5rem; margin-right: 3px;">';
-            echo CUENTA_ACTUAL->getNombres();
+            echo '<img class="img-fluid rounded-circle border border-2 border-dark" src="' . RUTA_RAIZ_WEB . '/app/vistas/img/perfil/' . $_SESSION['cuenta']['foto'] . '" alt="foto perfil" style="width: 1.5rem; height: 1.5rem; margin-right: 3px;">';
+            echo $_SESSION['cuenta']['nombres'];
             echo '</a>';
             echo '<a href="' . RUTA_RAIZ_WEB . '/cerrar-sesion" class="ms-auto d-none d-lg-block btn btn-danger rounded-pill">';
             echo '<i class="fa-solid fa-arrow-right-from-bracket fa-xl me-1" style="color: #ffffff;"></i>';

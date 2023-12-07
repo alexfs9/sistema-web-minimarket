@@ -38,8 +38,8 @@ $vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'mi-per
 $acciones = array('registrar', 'modificar', 'eliminar', 'ver');
 
 function esAdmin() {
-    if (defined('CUENTA_ACTUAL')) {
-        if (CUENTA_ACTUAL->getRol() == 'Administrador') {
+    if (isset($_SESSION['cuenta'])) {
+        if ($_SESSION['cuenta']['rol'] == 'Administrador') {
             return true;
         }
     }
@@ -108,14 +108,17 @@ if ($cantidadVariablesRecibidas != 0) {
             }
         } else {
             switch ($_GET['vista']) {
+                case 'registrarse':
+                    mostrarVista('Registrarse', array('ingreso'), array('registrarse'));
+                    break;
                 case 'iniciar-sesion':
-                    mostrarVista('IniciarSesion', array('iniciarSesion'), array('iniciarSesion'));
+                    mostrarVista('IniciarSesion', array('ingreso'), array('iniciarSesion'));
                     break;
                 case 'mi-perfil':
                     mostrarVista('MiPerfil', null, null);
                     break;
                 case 'carrito':
-                    mostrarVista('Carrito', null, null);
+                    mostrarVista('Carrito', null, array('cantidadProducto', 'carrito'));
                     break;
                 case 'sugerencias':
                     mostrarVista('Sugerencias', null, null);

@@ -1,5 +1,7 @@
 <?php
-require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php'
+
+require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php';
+
 ?>
 <div class="d-flex justify-content-center align-items-center vh-100">
     <form class="border border-danger border-2 rounded-2 p-4">
@@ -33,9 +35,12 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Cabeza.php'
             </button>
         </div>
         <input type="hidden" id="ruta" value="<?php echo RUTA_RAIZ_WEB; ?>">
-        <p>¿No se ha registrado? <a href="" class="link-offset-3">Regístrese aquí.</a></p>
+        <p>¿No se ha registrado? <a href="<?php echo RUTA_RAIZ_WEB . '/registrarse'; ?>" class="link-offset-3">Regístrese aquí.</a></p>
     </form>
 </div>
+
 <?php
-require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php'
+
+require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/pagina/Pie.php';
+
 ?>

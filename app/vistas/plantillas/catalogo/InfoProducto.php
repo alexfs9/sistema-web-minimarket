@@ -22,9 +22,9 @@
                 $precioNuevo = $producto['precio'] - ($oferta / 100);
                 $precioNuevo = round($precioNuevo, 2);
                 echo '<p class="card-text text-secondary text-decoration-line-through fw-semibold">S/. ' . $producto['precio'] . '</p>';
-                echo '<p class="card-text text-success fw-semibold">S/. ' . $precioNuevo . '</p>';
+                echo '<p class="card-text text-success fw-semibold" id="precio-' . $producto['idProducto'] . '">S/. ' . $precioNuevo . '</p>';
             } else {
-                echo '<p class="card-text text-success fw-semibold">S/. ' . $producto['precio'] . '</p>';
+                echo '<p class="card-text text-success fw-semibold" id="precio-' . $producto['idProducto'] . '">S/. ' . $producto['precio'] . '</p>';
             }
             ?>
         </div>
@@ -39,10 +39,10 @@
             <div class="me-2 input-group">
                 <?php
                 $productoControlador = new ProductoControlador();
-                $productoControlador->cargarCantidad($producto['idProducto'], $producto['stock'], 'sm');
+                $productoControlador->cargarCantidad($producto['idProducto'], null, $producto['stock'], 'sm');
                 ?>
             </div>
-            <input type="button" value="Añadir al carrito" class="btn btn-primary btn-sm" <?php echo $desactivado; ?>/>
+            <input type="button" value="Añadir al carrito" class="btn btn-primary btn-sm" id="<?php echo 'agregar-' . $producto['idProducto']; ?>" onclick="<?php echo 'agregarEnCarrito(' . $producto['idProducto'] . ')';?>" <?php echo $desactivado; ?>/>
         </div>
     </div>
     <?php

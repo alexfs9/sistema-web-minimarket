@@ -27,7 +27,7 @@
         <a href="<?php echo RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/modificar' ; ?>" class="mb-1 btn btn-warning" style="margin-right: 2px;">
             <i class="fa-solid fa-pencil fa-xl" style="color: #ffffff;"></i>
         </a>
-        <a href="<? echo RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/eliminar' ; ?>" class="mb-1 btn btn-danger">
+        <a href="<?php echo RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/eliminar' ; ?>" class="mb-1 btn btn-danger">
             <i class="fa-sharp fa-solid fa-trash fa-xl" style="color: #ffffff;"></i>
         </a>
     </td>

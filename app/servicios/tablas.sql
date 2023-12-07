@@ -21,7 +21,6 @@ create table persona(
     dni varchar(8) unique default "-",
     nombres varchar(50) not null,
     apellidos varchar(50) not null,
-    fechaNacimiento date not null,
     telefono varchar(9) unique not null,
     constraint fk_per_cue foreign key (idCuenta) references cuenta(idCuenta)
 );
