@@ -1,24 +1,56 @@
+/*
 function actualizarPrecioTotal() {
     let elementos = document.querySelectorAll("[id^='subtotal-']");
-    let precioTotal = 0;
-    for (let i = 0; i < elementos.length; i++) {
-        let idElemento = elementos[i].getAttribute('id');
-        let idProducto = idElemento.split("-")[1];
-        const campoSubtotal = document.getElementById("subtotal-" + idProducto);
-        const subtotal = parseFloat(campoSubtotal.innerHTML.trim());
-        precioTotal += subtotal;
+    if (elementos.length != 0) {
+        let precioTotal = 0;
+        for (let i = 0; i < elementos.length; i++) {
+            let idElemento = elementos[i].getAttribute('id');
+            let idProducto = idElemento.split("-")[1];
+            const campoSubtotal = document.getElementById("subtotal-" + idProducto);
+            const subtotal = parseFloat(campoSubtotal.innerHTML.trim());
+            precioTotal += subtotal;
+        }
+        let campoPrecioFinal = document.getElementById("precio-total");
+        campoPrecioFinal.textContent = "S/. " + precioTotal;
     }
+}
+*/
+
+const btnComprar = document.getElementById("comprar");
+
+function actualizarPrecioTotal(respuesta) {
+    respuesta = JSON.parse(respuesta);
     let campoPrecioFinal = document.getElementById("precio-total");
-    campoPrecioFinal.textContent = "S/. " + precioTotal;
+    campoPrecioFinal.textContent = "S/. " + respuesta;
+}
+
+function actualizarCarrito(id, cant, subt) {
+    let info = {
+        idProducto: id,
+        cantidad: cant,
+        subtotal: subt
+    };
+
+    $.ajax({
+        url: $("#ruta").val() + "/app/controladores/CarritoReceptor.php?accion=actualizar",
+        type: "post",
+        data: info,
+        success: (respuesta) => {
+            actualizarPrecioTotal(respuesta);
+        }
+    });
 }
 
 function actualizarPrecios(id) {
     let campoSubtotal = document.getElementById("subtotal-" + id);
     const campoCantidad = document.getElementById("cantidad-" + id);
     const campoPrecio = document.getElementById("precio-" + id);
-    let precioNuevo = parseInt(campoCantidad.value) * parseFloat(campoPrecio.innerHTML.trim());
-    campoSubtotal.innerHTML = precioNuevo.toFixed(2);
-    actualizarPrecioTotal();
+    let subtotal = parseInt(campoCantidad.value) * parseFloat(campoPrecio.innerHTML.trim());
+    if (!Number.isInteger(subtotal)) {
+        subtotal = subtotal.toFixed(2);
+    }
+    campoSubtotal.innerHTML = subtotal;
+    actualizarCarrito(id, parseInt(campoCantidad.value), subtotal);
 }
 
 function agregarEnCarrito(id) {
@@ -62,7 +94,7 @@ function eliminarEnCarrito(id) {
     let dato = {
         idProducto: id
     };
-    console.log("eliminando: " + id);
+    
     $.ajax({
         url: $("#ruta").val() + "/app/controladores/CarritoReceptor.php?accion=eliminar",
         type: "post",
@@ -71,7 +103,13 @@ function eliminarEnCarrito(id) {
             if (respuesta != "") {
                 $("#contenedor-productos-carrito").empty();
                 $("#contenedor-productos-carrito").html(respuesta);
-                actualizarPrecioTotal();
+                $.ajax({
+                    url: $("#ruta").val() + "/app/controladores/CarritoReceptor.php?accion=actualizarPrecioTotal",
+                    type: "post",
+                    success: (respuesta) => {
+                        actualizarPrecioTotal(respuesta);
+                    }
+                });
             } else {
                 window.location.href = $("#ruta").val() + '/productos';
             }
@@ -79,4 +117,8 @@ function eliminarEnCarrito(id) {
     });
 }
 
-window.onload = actualizarPrecioTotal;
+if (btnComprar != null) {
+    btnComprar.addEventListener("click", () => {
+        window.location.href = $("#ruta").val() + '/compra';
+    });
+}

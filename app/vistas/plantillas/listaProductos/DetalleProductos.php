@@ -21,7 +21,7 @@
         <?php echo $producto['oferta'] ; ?>
     </td>
     <td>
-        <img src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/subidas/' . $producto['imagen'] ; ?>" class="img-fluid border border-1 border-success" alt="alt" style="width: 4rem;" />
+        <img src="<?php echo RUTA_RAIZ_WEB . '/app/vistas/img/subidas/' . $producto['imagen'] ; ?>" alt="<?php echo $producto['imagen']; ?>" class="img-fluid border border-1 border-success" style="width: 4rem;"/>
     </td>
     <td>
         <a href="<?php echo RUTA_RAIZ_WEB . '/productos/' . $producto['idProducto'] . '/modificar' ; ?>" class="mb-1 btn btn-warning" style="margin-right: 2px;">

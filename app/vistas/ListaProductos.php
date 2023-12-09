@@ -17,7 +17,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/Filtros.php';
     ?>
     <div class="mb-1 table-responsive">
-        <table class="table table-secondary table-light table-hover align-middle text-center">
+        <table class="table table-hover align-middle text-center">
             <?php
             $columnas = array('Código', 'Nombre', 'Categoría', 'Proveedor', 'Precio', 'Stock', 'Oferta', 'Imagen', 'Acción');
             $clase = 'table-info';

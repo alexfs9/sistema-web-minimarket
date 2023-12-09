@@ -23,21 +23,41 @@ class CarritoControlador {
         return false;
     }
 
+    public function calcularPrecioTotal() {
+        $precioTotal = 0;
+        foreach ($_SESSION['carrito'] as $producto) {
+            $precioTotal += $producto['subtotal'];
+        }
+        return round($precioTotal, 2);
+    }
+
     public function agregarProducto($idProducto, $cantidad, $precio, $stock) {
         $_SESSION['carrito'][] = array(
             'idProducto' => $idProducto, 
             'cantidad' => $cantidad, 
             'precio' => $precio,
-            'stock' => $stock);
+            'stock' => $stock, 
+            'subtotal' => ($cantidad * $precio)
+        );
     }
 
-    public function eliminarProducto($idProducto) {
+    private function buscarProducto($idProducto) {
         foreach ($_SESSION['carrito'] as $elemento) {
             if ($elemento['idProducto'] == $idProducto) {
                 $producto = $elemento;
             }
         }
-        $indice = array_search($producto, $_SESSION['carrito']);
+        return array_search($producto, $_SESSION['carrito']);
+    }
+
+    public function actualizarProducto($idProducto, $cantidad, $subtotal) {
+        $indice = $this->buscarProducto($idProducto);
+        $_SESSION['carrito'][$indice]['cantidad'] = $cantidad;
+        $_SESSION['carrito'][$indice]['subtotal'] = $subtotal;
+    }
+
+    public function eliminarProducto($idProducto) {
+        $indice = $this->buscarProducto($idProducto);
         unset($_SESSION['carrito'][$indice]);
     }
 

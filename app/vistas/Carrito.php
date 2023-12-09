@@ -37,9 +37,9 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="fs-4 text-danger-emphasis">Total:</p>
-                        <p class="fs-3 fw-bold text-success" id="precio-total">S/.</p>
+                        <p class="fs-3 fw-bold text-success" id="precio-total">S/. <?php echo $carritoControlador->calcularPrecioTotal(); ?></p>
                     </div>
-                    <button type="button" class="btn btn-success btn-lg" <?php if (isset($_SESSION['cuenta'])) { echo ''; } else { echo 'disabled'; } ;?>>
+                    <button type="button" class="btn btn-success btn-lg" id="comprar" <?php if (isset($_SESSION['cuenta'])) { echo ''; } else { echo 'disabled'; } ;?>>
                         <i class="fa-solid fa-money-check-dollar fa-xl" style="color: #ffffff;"></i>
                         Realizar compra
                     </button>

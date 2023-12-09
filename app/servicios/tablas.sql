@@ -30,6 +30,11 @@ create table categoria(
     categoria varchar(40) unique not null
 );
 
+create table tipoPago(
+	idTipoPago tinyint primary key auto_increment,
+    tipoPago varchar(50) not null
+);
+
 create table tipoEntrega(
 	idTipoEntrega tinyint primary key auto_increment,
     tipoEntrega varchar(30) unique not null
@@ -60,18 +65,20 @@ create table venta(
 	idVenta int primary key auto_increment,
     idCuenta int not null,
     fecha datetime not null,
+    idTipoPago tinyint not null,
     idTipoEntrega tinyint not null,
     direccion varchar(100) default "-",
     precioTotal float not null,
     constraint fk_ven_cli foreign key (idCuenta) references cuenta(idCuenta),
-    constraint fk_ven_tip foreign key (idTipoEntrega) references tipoEntrega(idTipoEntrega)
+    constraint fk_ven_pag foreign key (idTipoPago) references tipoPago(idTipoPago),
+    constraint fk_ven_ent foreign key (idTipoEntrega) references tipoEntrega(idTipoEntrega)
 );
 
 create table detalleVenta(
 	idVenta int not null,
     idProducto smallint not null,
     cantidad tinyint not null,
-    precio float not null,
+    subtotal float not null,
     constraint fk_det_ven foreign key (idVenta) references venta(idVenta),
     constraint fk_det_pro foreign key (idProducto) references producto(idProducto)
 );

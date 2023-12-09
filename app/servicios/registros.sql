@@ -69,3 +69,8 @@ insert into producto (nombre, idCategoria, idProveedor, precio, stock, imagen) v
 insert into producto (nombre, idCategoria, idProveedor, precio, stock, imagen) values ('Comida para Gatitos Mimaskot Sabor a Pollo, Carne y Leche Bolsa 1kg', 7, 3, 10.5, 4, 'gatitosMimaskot1kg.jpg');
 insert into producto (nombre, idCategoria, idProveedor, precio, stock, imagen) values ('Comida para Gato Mimaskot Adulto Sabor a Pollo, Carne y Salmón Bolsa 1kg', 7, 9, 10, 10, 'gatosMimaskot1kg.jpg');
 insert into producto (nombre, idCategoria, idProveedor, precio, stock, imagen) values ('Comida para Perro Mimaskot Cachorros Carne y Cereales Bolsa 1kg', 7, 9, 8.5, 3, 'cachorrosMimaskot1kg.jpg');
+
+insert into tipoPago (tipoPago) values ('Tarjeta');
+insert into tipoPago (tipoPago) values ('Yape');
+insert into tipoEntrega (tipoEntrega) values ('Recojo en tienda');
+insert into tipoEntrega (tipoEntrega) values ('Delivery');

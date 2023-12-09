@@ -18,6 +18,6 @@
         </div>
     </td>
     <td class="text-success fw-bold" id="subtotal-<?php echo $producto['idProducto']; ?>">
-        <?php echo $producto['cantidad'] * $producto['precio']; ?>
+        <?php echo round($producto['subtotal'], 2); ?>
     </td>
 </tr>

@@ -53,3 +53,34 @@ begin
 	insert into sugerencia (idCuenta, asunto, sugerencia, fecha) values (id, asu, sug, fec);
 end $$
 delimiter ;
+
+delimiter $$
+create procedure registrarReclamo(in id int, in rec text, in fec datetime)
+begin
+	insert into reclamo (idCuenta, reclamo, fecha) values (id, rec, fec);
+end $$
+delimiter ;
+
+delimiter $$
+create procedure registrarVenta(in idCue int, in fec datetime, in tpa tinyint, in ten tinyint, in dir varchar(100), in pto float)
+begin
+	insert into venta (idCuenta, fecha, idTipoPago, idTipoEntrega, direccion, precioTotal) values (idCue, fec, tpa, ten, dir, pto);
+    set @idUltimaVenta = LAST_INSERT_ID();
+end $$
+delimiter ;
+
+delimiter $$
+create procedure registrarDetalleVenta(in idVen int, in idPro smallint, in can tinyint, sub float)
+begin
+	insert into detalleVenta (idVenta, idProducto, cantidad, subtotal) values (idVen, idPro, can, sub);
+end $$
+delimiter ;
+
+delimiter $$
+create trigger actualizarStock after insert on detalleVenta for each row
+begin
+	set @idPro = new.idProducto;
+    set @cant = new.cantidad;
+    update producto set stock = stock - @cant where idProducto = @idPro;
+end $$
+delimiter ;

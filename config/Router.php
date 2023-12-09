@@ -32,7 +32,7 @@
 require_once RUTA_RAIZ_PHP . '/app/controladores/ProductoControlador.php';
 require_once RUTA_RAIZ_PHP . '/app/controladores/ProveedorControlador.php';
 
-$vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'mi-perfil', 
+$vistas = array('productos', 'iniciar-sesion', 'registrarse', 'carrito', 'compra', 'mi-perfil', 
             'categorias', 'proveedores', 'ventas', 'clientes', 'sugerencias', 
             'reclamaciones', 'cerrar-sesion');
 $acciones = array('registrar', 'modificar', 'eliminar', 'ver');
@@ -120,6 +120,9 @@ if ($cantidadVariablesRecibidas != 0) {
                 case 'carrito':
                     mostrarVista('Carrito', null, array('cantidadProducto', 'carrito'));
                     break;
+                case 'compra':
+                    mostrarVista('Compra', null, array('compra'));
+                    break;
                 case 'sugerencias':
                     mostrarVista('Sugerencias', null, null);
                     break;
@@ -127,7 +130,7 @@ if ($cantidadVariablesRecibidas != 0) {
                     mostrarVista('Reclamaciones', null, null);
                     break;
                 case 'ventas':
-                    mostrarVista('Ventas', null, null);
+                    mostrarVista('Ventas', null, array('ventas'));
                     break;
                 case 'clientes':
                     mostrarVista('Clientes', null, null);
