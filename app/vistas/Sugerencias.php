@@ -5,8 +5,8 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 
 ?>
 
-<div class="container mb-2">
-    <h1 class="text-center text-decoration-underline text-primary">Sugerencias / Observaciones</h1>
+<div class="mt-2 mb-2 container">
+    <h1 class="text-center text-decoration-underline text-success">Sugerencias / Observaciones</h1>
     <form action="<?php echo RUTA_RAIZ_WEB . '/app/controladores/SugerenciaControlador.php'; ?>" method="post" class="p-2 border border-1 rounded shadow">
         <label for="asunto" class="form-label fw-semibold">Asunto:</label>
         <input type="text" class="mb-3 form-control" id="asunto" name="asunto" maxlength="70" required>

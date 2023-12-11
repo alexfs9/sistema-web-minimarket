@@ -6,7 +6,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
 ?>
 
 <div class="mt-2 mb-2 container">
-    <h1 class="text-center text-decoration-underline text-primary">Reclamos</h1>
+    <h1 class="text-center text-decoration-underline text-danger">Reclamos</h1>
     <form action="<?php echo RUTA_RAIZ_WEB . '/app/controladores/ReclamoControlador.php'; ?>" method="post" class="p-2 border border-1 rounded shadow">
         <label for="reclamo" class="form-label fw-semibold">Reclamo:</label>
         <textarea name="reclamo" class="mb-3 form-control" id="reclamo" cols="30" rows="10" style="resize: none;" required></textarea>

@@ -16,4 +16,21 @@ class ReclamoDao extends Conexion {
             $this->desconectar();
         }
     }
+
+    public function obtenerReclamos() {
+        $reclamos = null;
+        if ($this->conectar()) {
+            $sql = 'select idReclamo, idCuenta, reclamo, fecha from reclamo order by fecha desc;';
+            $resultado = $this->getConexion()->query($sql);
+            if ($resultado->num_rows > 0) {
+                $reclamos = array();
+                while ($reclamo = $resultado->fetch_assoc()) {
+                    $reclamos[] = $reclamo;
+                }
+                $resultado->free();
+            }
+            $this->desconectar();
+        }
+        return $reclamos;
+    }
 }

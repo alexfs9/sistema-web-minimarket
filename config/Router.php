@@ -130,7 +130,7 @@ if ($cantidadVariablesRecibidas != 0) {
                     mostrarVista('Reclamaciones', null, null);
                     break;
                 case 'ventas':
-                    mostrarVista('Ventas', null, array('ventas'));
+                    mostrarVista('Ventas', null, null);
                     break;
                 case 'clientes':
                     mostrarVista('Clientes', null, null);

@@ -4,7 +4,7 @@ insert into rol (rol) values ("Cliente");
 
 -- usuariospersona
 call registrarCuenta("admin@gmail.com", md5("123"), 1, "12345678", "Humberto Richard", "García Toribio", "123456789");
-call registrarCuenta("cliente@gmail.com", md5("123"), 2, "87654321", "Miau", "Flores Zevallos",  "852364179");
+call registrarCuenta("cliente@gmail.com", md5("123"), 2, "87654321", "Aron", "Flores Zevallos",  "852364179");
 
 -- categorías
 insert into categoria (categoria) values ('Abarrotes');

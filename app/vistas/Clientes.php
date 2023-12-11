@@ -46,6 +46,40 @@ $clienteControlador = new ClienteControlador();
             </tbody>
         </table>
     </div>
+    <h3 class="me-2 mb-2 text-warning-emphasis">Sugerencias</h3>
+    <div class="table-responsive">
+        <table class="table align-middle text-center">
+            <thead>
+                <?php
+                $columnas = array('CÓDIGO SUGERENCIA', 'CÓDIGO CLIENTE', 'ASUNTO', 'SUGERENCIA', 'FECHA');
+                $clase = 'table-success';
+                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                ?>
+            </thead>
+            <tbody>
+                <?php
+                $clienteControlador->consultarSugerencias();
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <h3 class="me-2 mb-2 text-warning-emphasis">RECLAMOS</h3>
+    <div class="table-responsive">
+        <table class="table align-middle text-center">
+            <thead>
+                <?php
+                $columnas = array('CÓDIGO RECLAMO', 'CÓDIGO CLIENTE', 'RECLAMO', 'FECHA');
+                $clase = 'table-danger';
+                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                ?>
+            </thead>
+            <tbody>
+                <?php
+                $clienteControlador->consultarReclamos();
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php

@@ -12,7 +12,7 @@ function deshabilitarUbicacion() {
 }
 
 function regresar() {
-    window.location.href = $("#ruta").val() + "/productos";
+    window.location.href = $("#ruta").val() + "/mi-perfil";
 }
 
 function finalizarCompra(tPago) {

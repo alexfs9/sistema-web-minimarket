@@ -34,7 +34,7 @@ $ventaControlador = new VentaControlador();
         <table class="table align-middle text-center">
             <thead>
                 <?php
-                $columnas = array('CÓDIGO VENTA', 'CÓDIGO CLIENTE', 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'PRECIO TOTAL');
+                $columnas = array('CÓDIGO VENTA', 'CÓDIGO CLIENTE', 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'PRECIO TOTAL', 'BOLETA');
                 $clase = 'table-light';
                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
                 ?>

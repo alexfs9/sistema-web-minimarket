@@ -10,6 +10,6 @@
         <?php echo $producto['cantidadVendida']; ?>
     </td>
     <td class="text-success fw-bold">
-        <?php echo $producto['ingreso']; ?>
+        <?php echo 'S/.' . $producto['ingreso']; ?>
     </td>
 </tr>

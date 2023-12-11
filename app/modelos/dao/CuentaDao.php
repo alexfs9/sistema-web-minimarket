@@ -31,7 +31,7 @@ class CuentaDao extends Conexion {
         if ($this->conectar()) {
             $sql = 'select v.idVenta, v.fecha, tp.tipoPago, te.tipoEntrega, v.direccion, 
             v.precioTotal from venta v inner join tipoPago tp on v.idTipoPago = tp.idTipoPago 
-            inner join tipoEntrega te on v.idTipoEntrega = te.idTipoEntrega where idCuenta = ?;';
+            inner join tipoEntrega te on v.idTipoEntrega = te.idTipoEntrega where idCuenta = ? order by v.fecha desc;';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
                 $sqlPreparado->bind_param('i', $idCuenta);

@@ -88,7 +88,7 @@ $cuentaControlador = new CuentaControlador();
                         <table class="table text-center align-middle text-center">
                             <thead>
                                 <?php
-                                $columnas = array('CÓDIGO', 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'P. TOTAL');
+                                $columnas = array('CÓDIGO', 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'P. TOTAL', 'BOLETA');
                                 $clase = 'table-success';
                                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
                                 ?>

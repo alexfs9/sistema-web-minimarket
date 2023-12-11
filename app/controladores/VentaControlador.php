@@ -35,4 +35,12 @@ class VentaControlador {
             echo '<h1 class="text-danger-emphasis">Aún no ha realizado ventas.</h1>';
         }
     }
+
+    public function consultarVenta($idVenta) {
+        return $this->ventaDao->obtenerVenta($idVenta);
+    }
+
+    public function consultarDetalleVenta($idVenta) {
+        return $this->ventaDao->obtenerDetalleVenta($idVenta);
+    }
 }

@@ -3,6 +3,7 @@
 require_once '../../Constantes.php';
 require_once RUTA_RAIZ_PHP . '/app/controladores/CarritoControlador.php';
 require_once RUTA_RAIZ_PHP . '/app/modelos/dao/CompraDao.php';
+require_once RUTA_RAIZ_PHP . '/app/controladores/VentaControlador.php';
 
 date_default_timezone_set("America/Lima");
 session_start();
