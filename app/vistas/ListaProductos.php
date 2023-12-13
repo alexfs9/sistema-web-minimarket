@@ -19,7 +19,7 @@ require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/menu/Menu.php';
     <div class="mb-1 table-responsive">
         <table class="table table-hover align-middle text-center">
             <?php
-            $columnas = array('Código', 'Nombre', 'Categoría', 'Proveedor', 'Precio', 'Stock', 'Oferta', 'Imagen', 'Acción');
+            $columnas = array('CÓDIGO', 'NOMBRE', 'CATEGORÍA', 'PROVEEDOR', 'PRECIO', 'STOCK', 'OFERTA', 'IMAGEN', 'ACCIÓN');
             $clase = 'table-info';
             require_once RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
             ?>
