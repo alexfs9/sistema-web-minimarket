@@ -57,6 +57,7 @@ create table producto(
     stock tinyint not null,
     oferta float default '0',
     imagen varchar(100) default '-',
+    habilitado bool default true,
     constraint fk_pro_cat foreign key (idCategoria) references categoria(idCategoria),
     constraint fk_pro_prov foreign key (idProveedor) references proveedor(idProveedor)
 );

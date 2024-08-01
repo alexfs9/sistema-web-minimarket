@@ -74,3 +74,5 @@ insert into tipoPago (tipoPago) values ('Tarjeta');
 insert into tipoPago (tipoPago) values ('Yape');
 insert into tipoEntrega (tipoEntrega) values ('Recojo en tienda');
 insert into tipoEntrega (tipoEntrega) values ('Delivery');
+
+create view productosHabilitados as select * from producto where habilitado = true;

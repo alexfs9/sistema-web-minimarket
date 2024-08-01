@@ -78,7 +78,7 @@ class ProductoDao extends Conexion {
 
     public function eliminar($idProducto) {
         if ($this->conectar()) {
-            $sql = 'delete from producto where idProducto = ?;';
+            $sql = 'update producto set habilitado = false where idProducto = ?;';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
                 $sqlPreparado->bind_param('i', $idProducto);
@@ -107,13 +107,13 @@ class ProductoDao extends Conexion {
     }
 
     public function catalogar() {
-        $sql = 'select idProducto, nombre, precio, oferta, stock, imagen from producto;';
+        $sql = 'select idProducto, nombre, precio, oferta, stock, imagen from productosHabilitados;';
         return $this->obtenerProductos($sql);
     }
 
     public function listar() {
         $sql = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock, 
-        p.oferta, p.imagen from producto p inner join categoria c on p.idCategoria = c.idCategoria 
+        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria 
         inner join proveedor pr on p.idProveedor = pr.IdProveedor;';
         return $this->obtenerProductos($sql);
     }
