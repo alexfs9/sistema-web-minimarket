@@ -1,6 +1,6 @@
 <?php
 
-require_once RUTA_RAIZ_PHP . '/app/modelos/dao/VentaDao.php';
+//require_once RUTA_RAIZ_PHP . '/app/modelos/dao/VentaDao.php';
 
 class VentaControlador {
 
@@ -26,14 +26,15 @@ class VentaControlador {
     }
 
     public function consultarProductos() {
-        $productos = $this->ventaDao->obtenerProductos();
+        /*$productos = $this->ventaDao->obtenerProductos();
         if (isset($productos)) {
             foreach ($productos as $producto) {
                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/venta/MiProducto.php';
             }
         } else {
             echo '<h1 class="text-danger-emphasis">Aún no ha realizado ventas.</h1>';
-        }
+        }*/
+        return null;
     }
 
     public function consultarVenta($idVenta) {

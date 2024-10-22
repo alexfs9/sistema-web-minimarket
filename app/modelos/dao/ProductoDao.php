@@ -1,6 +1,6 @@
 <?php
 
-require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
+//require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
 
 class ProductoDao extends Conexion {
 
@@ -92,10 +92,10 @@ class ProductoDao extends Conexion {
     }
 
     public function obtenerProductos($sql) {
+        $productos = [];
         if ($this->conectar()) {
             $resultado = $this->getConexion()->query($sql);
             if ($resultado) {
-                $productos = null;
                 while ($fila = $resultado->fetch_assoc()) {
                     $productos[] = $fila;
                 }

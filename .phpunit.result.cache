@@ -1,0 +1,1 @@
+{"version":1,"defects":{"ListaProductosTest::testListaProductosVacio":7,"ListaProductosTest::testListaProductosLleno":7,"ProductosVendidosTest::testProductosVendidosVacio":7},"times":{"ListaProductosTest::testListaProductosVacio":0.017,"ListaProductosTest::testListaProductosLleno":0.012,"ProductosVendidosTest::testProductosVendidosVacio":0.848}}
