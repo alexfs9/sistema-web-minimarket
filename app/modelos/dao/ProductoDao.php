@@ -5,90 +5,113 @@
 class ProductoDao extends Conexion {
 
     public function consultar($idProducto) {
-        $sql = 'select p.idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, 
-        p.stock, p.oferta, p.imagen from producto p inner join categoria c on p.idCategoria = c.idCategoria 
-        inner join proveedor pr on p.idProveedor = pr.idProveedor where p.idProducto = ?;';
-        if ($this->conectar()) {
-            $sqlPreparado = $this->getConexion()->prepare($sql);
-            if ($sqlPreparado) {
-                $sqlPreparado->bind_param('i', $idProducto);
-                $sqlPreparado->execute();
-                $resultado = $sqlPreparado->get_result();
-                if ($resultado) {
-                    $datosProducto = $resultado->fetch_assoc();
-                    $resultado->free();
-                }
-                $sqlPreparado->close();
-            }
-            $this->desconectar();
+        $sql = 'SELECT p.idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, 
+            p.stock, p.oferta, p.imagen 
+            FROM producto p 
+            INNER JOIN categoria c ON p.idCategoria = c.idCategoria 
+            INNER JOIN proveedor pr ON p.idProveedor = pr.idProveedor 
+            WHERE p.idProducto = ?';
+    
+    $datosProducto = null;
+
+    if ($this->conectar()) {
+        $sqlPreparado = $this->getConexion()->prepare($sql);
+        if ($sqlPreparado) {
+            $sqlPreparado->bind_param('i', $idProducto);
+            $sqlPreparado->execute();
+            $resultado = $sqlPreparado->get_result();
+            $datosProducto = $resultado ? $resultado->fetch_assoc() : null;
+            $resultado?->free();
+            $sqlPreparado->close();
         }
-        $producto = new Producto($datosProducto['idProducto'], 
-        $datosProducto['nombre'], $datosProducto['categoria'], $datosProducto['proveedor'], 
-        $datosProducto['precio'], $datosProducto['stock'], $datosProducto['oferta'], 
-        $datosProducto['imagen']);
-        return $producto;
+        $this->desconectar();
+    }
+
+    return $datosProducto 
+        ? new Producto(
+            $datosProducto['idProducto'],
+            $datosProducto['nombre'],
+            $datosProducto['categoria'],
+            $datosProducto['proveedor'],
+            $datosProducto['precio'],
+            $datosProducto['stock'],
+            $datosProducto['oferta'],
+            $datosProducto['imagen']
+        )
+        : null;
     }
 
     public function registrar($producto) {
-        if ($this->conectar()) {
-            $sql = 'call registrarProducto(?, ?, ?, ?, ?, ?, ?);';
-            $sqlPreparado = $this->getConexion()->prepare($sql);
-            if ($sqlPreparado) {
-                $nombre = $producto->getNombre();
-                $categoria = $producto->getCategoria();
-                $proveedor = $producto->getProveedor();
-                $precio = $producto->getPrecio();
-                $stock = $producto->getStock();
-                $oferta = $producto->getOferta();
-                $imagen = $producto->getImagen();
-                $sqlPreparado->bind_param('sssdids', $nombre, $categoria, 
-                $proveedor, $precio, $stock, $oferta, $imagen);
-                $sqlPreparado->execute();
-                $sqlPreparado->close();
-            }
-            $this->desconectar();
-            return true;
+        if (!$this->conectar()) {
+            return "Producto no registrado";
         }
-        return false;
+    
+        $sql = 'call registrarProducto(?, ?, ?, ?, ?, ?, ?);';
+        $sqlPreparado = $this->getConexion()->prepare($sql);
+    
+        if ($sqlPreparado) {
+            $sqlPreparado->bind_param(
+                'sssdids',
+                $producto->getNombre(),
+                $producto->getCategoria(),
+                $producto->getProveedor(),
+                $producto->getPrecio(),
+                $producto->getStock(),
+                $producto->getOferta(),
+                $producto->getImagen()
+            );
+            $sqlPreparado->execute();
+            $sqlPreparado->close();
+        }
+    
+        $this->desconectar();
+        return "Producto registrado";
     }
 
     public function modificar($producto) {
-        if ($this->conectar()) {
-            $sql = 'call modificarProducto(?, ?, ?, ?, ?, ?, ?, ?)';
-            $sqlPreparado = $this->getConexion()->prepare($sql);
-            if ($sqlPreparado) {
-                $idProducto = $producto->getIdProducto();
-                $nombre = $producto->getNombre();
-                $categoria = $producto->getCategoria();
-                $proveedor = $producto->getProveedor();
-                $precio = $producto->getPrecio();
-                $stock = $producto->getStock();
-                $oferta = $producto->getOferta();
-                $imagen = $producto->getImagen();
-                $sqlPreparado->bind_param('isssdids', $idProducto, $nombre, 
-                $categoria, $proveedor, $precio, $stock, $oferta, $imagen);
-                $sqlPreparado->execute();
-                $sqlPreparado->close();
-            }
-            $this->desconectar();
-            return true;
+        if (!$this->conectar()) {
+            return "Producto no modificado";
         }
-        return false;
+    
+        $sql = 'CALL modificarProducto(?, ?, ?, ?, ?, ?, ?, ?)';
+        $sqlPreparado = $this->getConexion()->prepare($sql);
+    
+        if ($sqlPreparado) {
+            $sqlPreparado->bind_param(
+                'isssdids',
+                $producto->getIdProducto(),
+                $producto->getNombre(),
+                $producto->getCategoria(),
+                $producto->getProveedor(),
+                $producto->getPrecio(),
+                $producto->getStock(),
+                $producto->getOferta(),
+                $producto->getImagen()
+            );
+            $sqlPreparado->execute();
+            $sqlPreparado->close();
+        }
+    
+        $this->desconectar();
+        return $sqlPreparado ? "Producto modificado" : "Producto no modificado";
     }
 
     public function eliminar($idProducto) {
-        if ($this->conectar()) {
-            $sql = 'update producto set habilitado = false where idProducto = ?;';
-            $sqlPreparado = $this->getConexion()->prepare($sql);
-            if ($sqlPreparado) {
-                $sqlPreparado->bind_param('i', $idProducto);
-                $sqlPreparado->execute();
-                $sqlPreparado->close();
-            }
-            $this->desconectar();
-            return true;
+        if (!$this->conectar()) {
+            return "Producto no eliminado";
         }
-        return false;
+    
+        $sql = 'UPDATE producto SET habilitado = false WHERE idProducto = ?';
+        $sqlPreparado = $this->getConexion()->prepare($sql);
+    
+        if ($sqlPreparado) {
+            $sqlPreparado->bind_param('i', $idProducto);
+            $sqlPreparado->execute();
+            $sqlPreparado->close();
+        }
+    
+        $this->desconectar();
+        return $sqlPreparado ? "Producto eliminado" : "Producto no eliminado";
     }
 
     public function obtenerProductos($sql) {
