@@ -5,7 +5,7 @@ class Conexion {
     // Cambiar valores según tu configuración de MySQL
     private $servidor = 'localhost';
     private $usuario = 'root';
-    private $contrasena = '12345';
+    private $contrasena = '';
     private $nombreBd = 'bdminimarket';
     private $puerto = '3306';
     private $conexion;
