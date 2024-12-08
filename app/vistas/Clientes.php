@@ -6,6 +6,8 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/ClienteControlador.php';
 
 $clienteControlador = new ClienteControlador();
 
+const CODIGO_CLIENTE = 'CÓDIGO CLIENTE';
+
 ?>
 
 <div class="mt-2 mb-2 container">
@@ -34,7 +36,7 @@ $clienteControlador = new ClienteControlador();
         <table class="table align-middle text-center">
             <thead>
                 <?php
-                $columnas = array('CÓDIGO CLIENTE', 'CLIENTE', 'CANTIDAD COMPRAS', 'FEC. ÚLTIMA COMPRA', 'INGRESOS');
+                $columnas = array(CODIGO_CLIENTE, 'CLIENTE', 'CANTIDAD COMPRAS', 'FEC. ÚLTIMA COMPRA', 'INGRESOS');
                 $clase = 'table-warning';
                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
                 ?>
@@ -51,7 +53,7 @@ $clienteControlador = new ClienteControlador();
         <table class="table align-middle text-center">
             <thead>
                 <?php
-                $columnas = array('CÓDIGO SUGERENCIA', 'CÓDIGO CLIENTE', 'ASUNTO', 'SUGERENCIA', 'FECHA');
+                $columnas = array('CÓDIGO SUGERENCIA', CODIGO_CLIENTE, 'ASUNTO', 'SUGERENCIA', 'FECHA');
                 $clase = 'table-success';
                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
                 ?>
@@ -68,7 +70,7 @@ $clienteControlador = new ClienteControlador();
         <table class="table align-middle text-center">
             <thead>
                 <?php
-                $columnas = array('CÓDIGO RECLAMO', 'CÓDIGO CLIENTE', 'RECLAMO', 'FECHA');
+                $columnas = array('CÓDIGO RECLAMO', CODIGO_CLIENTE, 'RECLAMO', 'FECHA');
                 $clase = 'table-danger';
                 include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
                 ?>
