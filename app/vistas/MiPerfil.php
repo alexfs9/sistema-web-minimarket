@@ -6,6 +6,9 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/CuentaControlador.php';
 
 $cuentaControlador = new CuentaControlador();
 
+const CODIGO = 'CÓDIGO';
+const RUTA_CABECERA = RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+
 ?>
 
 <div class="mt-2 mb-2 container">
@@ -88,9 +91,9 @@ $cuentaControlador = new CuentaControlador();
                         <table class="table text-center align-middle text-center">
                             <thead>
                                 <?php
-                                $columnas = array('CÓDIGO', 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'P. TOTAL', 'BOLETA');
+                                $columnas = array(CODIGO, 'FECHA', 'TIPO PAGO', 'TIPO ENTREGA', 'DIRECCIÓN', 'P. TOTAL', 'BOLETA');
                                 $clase = 'table-success';
-                                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                                include RUTA_CABECERA;
                                 ?>
                             </thead>
                             <tbody class="table-group-divider">
@@ -116,9 +119,9 @@ $cuentaControlador = new CuentaControlador();
                         <table class="table text-center align-middle text-center">
                             <thead>
                                 <?php
-                                $columnas = array('CÓDIGO', 'ASUNTO', 'SUGERENCIA', 'FECHA');
+                                $columnas = array(CODIGO, 'ASUNTO', 'SUGERENCIA', 'FECHA');
                                 $clase = 'table-info';
-                                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                                include RUTA_CABECERA;
                                 ?>
                             </thead>
                             <tbody class="table-group-divider">
@@ -144,9 +147,9 @@ $cuentaControlador = new CuentaControlador();
                         <table class="table text-center align-middle text-center">
                             <thead>
                                 <?php
-                                $columnas = array('CÓDIGO', 'RECLAMO', 'FECHA');
+                                $columnas = array(CODIGO, 'RECLAMO', 'FECHA');
                                 $clase = 'table-danger';
-                                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                                include RUTA_CABECERA;
                                 ?>
                             </thead>
                             <tbody class="table-group-divider">
