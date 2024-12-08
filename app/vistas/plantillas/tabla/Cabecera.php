@@ -2,7 +2,7 @@
     <tr class="<?php echo $clase; ?>">
         <?php
         foreach($columnas as $columna) {
-            echo '<th>' . $columna . '</th>';
+            echo '<th scope="col">' . $columna . '</th>';
         }
         ?>
     </tr>
