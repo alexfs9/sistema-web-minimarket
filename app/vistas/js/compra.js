@@ -28,7 +28,7 @@ function finalizarCompra(tPago) {
                 icon: "warning"
             });
         } else {
-            tEntrega = (rbtnRecojo.checked) ? 1 : 2;
+            const tEntrega = (rbtnRecojo.checked) ? 1 : 2;
             let venta = {
                 tipoPago: tPago,
                 tipoEntrega: tEntrega
