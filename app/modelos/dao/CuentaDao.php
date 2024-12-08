@@ -6,10 +6,10 @@ class CuentaDao extends Conexion {
 
     public function obtenerCuenta($cor, $con) {
         if ($this->conectar()) {
-            $sql = 'select c.idCuenta, p.dni, p.nombres, p.apellidos, 
-            p.telefono, c.correo, c.contrasena, c.foto, r.rol from 
-            cuenta c inner join persona p on c.idCuenta = p.idCuenta inner join rol r on 
-            c.idRol = r.idRol where c.correo = ? and c.contrasena = ?;';
+            $sql = 'select c.idCuenta, p.dni, p.nombres, p.apellidos,
+            p.telefono, c.correo, c.contrasena, c.foto, r.rol from' . ' ' .
+            'cuenta c inner join persona p on c.idCuenta = p.idCuenta inner join rol r on' . ' ' .
+            'c.idRol = r.idRol where c.correo = ? and c.contrasena = ?;';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
                 $sqlPreparado->bind_param('ss', $cor, $con);
@@ -29,9 +29,9 @@ class CuentaDao extends Conexion {
     public function obtenerCompras($idCuenta) {
         $compras = null;
         if ($this->conectar()) {
-            $sql = 'select v.idVenta, v.fecha, tp.tipoPago, te.tipoEntrega, v.direccion, 
-            v.precioTotal from venta v inner join tipoPago tp on v.idTipoPago = tp.idTipoPago 
-            inner join tipoEntrega te on v.idTipoEntrega = te.idTipoEntrega where idCuenta = ? order by v.fecha desc;';
+            $sql = 'select v.idVenta, v.fecha, tp.tipoPago, te.tipoEntrega, v.direccion,
+            v.precioTotal from venta v inner join tipoPago tp on v.idTipoPago = tp.idTipoPago' . ' ' .
+            'inner join tipoEntrega te on v.idTipoEntrega = te.idTipoEntrega where idCuenta = ? order by v.fecha desc;';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
                 $sqlPreparado->bind_param('i', $idCuenta);

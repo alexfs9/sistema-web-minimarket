@@ -9,7 +9,7 @@ class IngresoDao extends Conexion {
             $sql = 'call registrarCuenta(?, ?, ?, ?, ?, ?, ?)';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
-                $sqlPreparado->bind_param('ssissss', $correo, $contrasena, $rol, $dni, 
+                $sqlPreparado->bind_param('ssissss', $correo, $contrasena, $rol, $dni,
                 $nombres, $apellidos, $telefono);
                 $sqlPreparado->execute();
                 $sqlPreparado->close();

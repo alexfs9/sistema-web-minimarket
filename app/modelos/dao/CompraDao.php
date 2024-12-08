@@ -9,7 +9,7 @@ class CompraDao extends Conexion {
         if ($this->conectar()) {
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
-                $sqlPreparado->bind_param('iiid', $idVenta, $idProducto, 
+                $sqlPreparado->bind_param('iiid', $idVenta, $idProducto,
                 $cantidad, $subtotal);
                 $sqlPreparado->execute();
                 $sqlPreparado->close();
@@ -23,7 +23,7 @@ class CompraDao extends Conexion {
             $sql = 'call registrarVenta(?, ?, ?, ?, ?, ?)';
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
-                $sqlPreparado->bind_param('isiisd', $idCuenta, $fecha, $tipoPago, 
+                $sqlPreparado->bind_param('isiisd', $idCuenta, $fecha, $tipoPago,
                 $tipoEntrega, $direccion, $precioTotal);
                 $sqlPreparado->execute();
                 $resultado = $this->getConexion()->query('select @idUltimaVenta;')->fetch_assoc();

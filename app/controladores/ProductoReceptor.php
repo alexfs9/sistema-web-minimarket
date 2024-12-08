@@ -10,7 +10,7 @@ if ($_GET['tipo'] == 'registrar') {
     $nombreImagen = $_FILES['imagen']['name'];
     $rutaTemp = $_FILES['imagen']['tmp_name'];
     $rutaFinal = RUTA_RAIZ_PHP . '/app/vistas/img/subidas/';
-    $producto = new Producto("", $_POST['nombre'], $_POST['categoria'], $_POST['proveedor'], $_POST['precio'], 
+    $producto = new Producto("", $_POST['nombre'], $_POST['categoria'], $_POST['proveedor'], $_POST['precio'],
     $_POST['stock'], $_POST['oferta'], $nombreImagen);
     move_uploaded_file($rutaTemp, $rutaFinal . $nombreImagen);
     if($productoDao->registrar($producto)) {
@@ -28,7 +28,7 @@ if ($_GET['tipo'] == 'registrar') {
     } else {
         $nombreImagen = $_POST['imagenActual'];
     }
-    $producto = new Producto($_POST['idProducto'], $_POST['nombre'], $_POST['categoria'], $_POST['proveedor'], $_POST['precio'], 
+    $producto = new Producto($_POST['idProducto'], $_POST['nombre'], $_POST['categoria'], $_POST['proveedor'], $_POST['precio'],
     $_POST['stock'], $_POST['oferta'], $nombreImagen);
     if ($productoDao->modificar($producto)) {
         echo json_encode('modificado');

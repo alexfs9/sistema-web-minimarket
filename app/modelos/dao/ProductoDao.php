@@ -5,9 +5,9 @@ require_once RUTA_RAIZ_PHP . '/app/servicios/Conexion.php';
 class ProductoDao extends Conexion {
 
     public function consultar($idProducto) {
-        $sql = 'select p.idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, 
-        p.stock, p.oferta, p.imagen from producto p inner join categoria c on p.idCategoria = c.idCategoria 
-        inner join proveedor pr on p.idProveedor = pr.idProveedor where p.idProducto = ?;';
+        $sql = 'select p.idProducto, p.nombre, c.categoria, pr.proveedor, p.precio,
+        p.stock, p.oferta, p.imagen from producto p inner join categoria c on p.idCategoria = c.idCategoria' . ' ' .
+        'inner join proveedor pr on p.idProveedor = pr.idProveedor where p.idProducto = ?;';
         if ($this->conectar()) {
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
@@ -22,9 +22,9 @@ class ProductoDao extends Conexion {
             }
             $this->desconectar();
         }
-        $producto = new Producto($datosProducto['idProducto'], 
-        $datosProducto['nombre'], $datosProducto['categoria'], $datosProducto['proveedor'], 
-        $datosProducto['precio'], $datosProducto['stock'], $datosProducto['oferta'], 
+        $producto = new Producto($datosProducto['idProducto'],
+        $datosProducto['nombre'], $datosProducto['categoria'], $datosProducto['proveedor'],
+        $datosProducto['precio'], $datosProducto['stock'], $datosProducto['oferta'],
         $datosProducto['imagen']);
         return $producto;
     }
@@ -41,7 +41,7 @@ class ProductoDao extends Conexion {
                 $stock = $producto->getStock();
                 $oferta = $producto->getOferta();
                 $imagen = $producto->getImagen();
-                $sqlPreparado->bind_param('sssdids', $nombre, $categoria, 
+                $sqlPreparado->bind_param('sssdids', $nombre, $categoria,
                 $proveedor, $precio, $stock, $oferta, $imagen);
                 $sqlPreparado->execute();
                 $sqlPreparado->close();
@@ -65,7 +65,7 @@ class ProductoDao extends Conexion {
                 $stock = $producto->getStock();
                 $oferta = $producto->getOferta();
                 $imagen = $producto->getImagen();
-                $sqlPreparado->bind_param('isssdids', $idProducto, $nombre, 
+                $sqlPreparado->bind_param('isssdids', $idProducto, $nombre,
                 $categoria, $proveedor, $precio, $stock, $oferta, $imagen);
                 $sqlPreparado->execute();
                 $sqlPreparado->close();
@@ -112,9 +112,9 @@ class ProductoDao extends Conexion {
     }
 
     public function listar() {
-        $sql = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock, 
-        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria 
-        inner join proveedor pr on p.idProveedor = pr.IdProveedor;';
+        $sql = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock,
+        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria' . ' ' .
+        'inner join proveedor pr on p.idProveedor = pr.IdProveedor;';
         return $this->obtenerProductos($sql);
     }
 }

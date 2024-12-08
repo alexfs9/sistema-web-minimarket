@@ -24,7 +24,7 @@ class FiltrosControlador {
     }
 
     public function filtrarCatalogo($nombre, $categoria, $precio) {
-        $sqlBase = 'select p.idProducto, p.nombre, p.precio, p.oferta, p.stock, 
+        $sqlBase = 'select p.idProducto, p.nombre, p.precio, p.oferta, p.stock,
         p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria';
         $columnaNombre = 'p.nombre like ';
         $columnaCategoria = 'c.categoria = ';
@@ -66,9 +66,9 @@ class FiltrosControlador {
     }
 
     public function filtrarLista($idProducto, $nombre, $categoria, $stock, $precio) {
-        $sqlBase = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock, 
-        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria 
-        inner join proveedor pr on p.idProveedor = pr.IdProveedor';
+        $sqlBase = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock,
+        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria' . ' ' .
+        'inner join proveedor pr on p.idProveedor = pr.IdProveedor';
         $columnaNombre = 'p.nombre like ';
         $columnaCategoria = 'c.categoria = ';
         $donde = ' where ';

@@ -28,17 +28,13 @@ function accionar(accionId) {
     let accion = accionId.split("-")[0];
     let id = accionId.split("-")[1];
     definirElementos(id);
-    if (accion === "disminuir") {
-        if (cantidadActual > cantidadMinima) {
-            cantidadActual -= 1;
-            campoCantidad.value = cantidadActual;
-            estadoBoton();
-        }
-    } else {
-        if (cantidadActual < cantidadMaxima) {
-            cantidadActual += 1;
-            campoCantidad.value = cantidadActual;
-            estadoBoton();
-        }
+    if (accion === "disminuir" && cantidadActual > cantidadMinima) {
+        cantidadActual -= 1;
+        campoCantidad.value = cantidadActual;
+        estadoBoton();
+    } else if (cantidadActual < cantidadMaxima) {
+        cantidadActual += 1;
+        campoCantidad.value = cantidadActual;
+        estadoBoton();
     }
 }

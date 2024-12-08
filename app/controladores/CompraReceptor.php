@@ -19,10 +19,10 @@ if ($_GET['accion'] == 'registrar') {
     $carritoControlador = new CarritoControlador();
     $precioTotal = $carritoControlador->calcularPrecioTotal();
     $compraDao = new CompraDao();
-    $idVenta = $compraDao->registrarVenta($idCuenta, $fecha, $_POST['tipoPago'], 
+    $idVenta = $compraDao->registrarVenta($idCuenta, $fecha, $_POST['tipoPago'],
                 $_POST['tipoEntrega'], $direccion, $precioTotal);
     foreach ($_SESSION['carrito'] as $producto) {
-        $compraDao->registrarDetalleVenta($idVenta['@idUltimaVenta'], $producto['idProducto'], 
+        $compraDao->registrarDetalleVenta($idVenta['@idUltimaVenta'], $producto['idProducto'],
         $producto['cantidad'], $producto['subtotal']);
     }
     $_SESSION['carrito'] = [];

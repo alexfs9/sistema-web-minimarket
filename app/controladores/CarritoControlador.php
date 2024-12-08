@@ -33,10 +33,10 @@ class CarritoControlador {
 
     public function agregarProducto($idProducto, $cantidad, $precio, $stock) {
         $_SESSION['carrito'][] = array(
-            'idProducto' => $idProducto, 
-            'cantidad' => $cantidad, 
+            'idProducto' => $idProducto,
+            'cantidad' => $cantidad,
             'precio' => $precio,
-            'stock' => $stock, 
+            'stock' => $stock,
             'subtotal' => ($cantidad * $precio)
         );
     }

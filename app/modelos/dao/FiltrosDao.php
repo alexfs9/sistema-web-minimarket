@@ -7,7 +7,7 @@ class FiltrosDao extends Conexion {
     public function obtenerFiltro($filtro) {
         if ($this->conectar()) {
             $nombreFiltro = ucfirst($filtro);
-            $nombreFiltro = 'id' . $nombreFiltro;            
+            $nombreFiltro = 'id' . $nombreFiltro;
             $sql = "select $nombreFiltro as id, $filtro from $filtro;";
             $sqlPreparado = $this->getConexion()->prepare($sql);
             if ($sqlPreparado) {
