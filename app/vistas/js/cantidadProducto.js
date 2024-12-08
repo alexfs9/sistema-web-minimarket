@@ -1,9 +1,9 @@
-var btnDisminuir;
-var campoCantidad;
-var btnAumentar;
+let btnDisminuir;
+let campoCantidad;
+let btnAumentar;
 const cantidadMinima = 1;
-var cantidadActual;
-var cantidadMaxima;
+let cantidadActual;
+let cantidadMaxima;
 
 function definirElementos(id) {
     btnDisminuir = document.getElementById("disminuir-" + id);
