@@ -7,6 +7,7 @@ require_once RUTA_RAIZ_PHP . '/app/controladores/ClienteControlador.php';
 $clienteControlador = new ClienteControlador();
 
 const CODIGO_CLIENTE = 'CÓDIGO CLIENTE';
+const RUTA_CABECERA = RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
 
 ?>
 
@@ -38,7 +39,7 @@ const CODIGO_CLIENTE = 'CÓDIGO CLIENTE';
                 <?php
                 $columnas = array(CODIGO_CLIENTE, 'CLIENTE', 'CANTIDAD COMPRAS', 'FEC. ÚLTIMA COMPRA', 'INGRESOS');
                 $clase = 'table-warning';
-                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                include RUTA_CABECERA;
                 ?>
             </thead>
             <tbody>
@@ -55,7 +56,7 @@ const CODIGO_CLIENTE = 'CÓDIGO CLIENTE';
                 <?php
                 $columnas = array('CÓDIGO SUGERENCIA', CODIGO_CLIENTE, 'ASUNTO', 'SUGERENCIA', 'FECHA');
                 $clase = 'table-success';
-                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                include RUTA_CABECERA;
                 ?>
             </thead>
             <tbody>
@@ -72,7 +73,7 @@ const CODIGO_CLIENTE = 'CÓDIGO CLIENTE';
                 <?php
                 $columnas = array('CÓDIGO RECLAMO', CODIGO_CLIENTE, 'RECLAMO', 'FECHA');
                 $clase = 'table-danger';
-                include RUTA_RAIZ_PHP . '/app/vistas/plantillas/tabla/Cabecera.php';
+                include RUTA_CABECERA;
                 ?>
             </thead>
             <tbody>
