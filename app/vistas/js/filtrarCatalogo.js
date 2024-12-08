@@ -4,7 +4,7 @@ const cbPrecio = document.getElementById("precio");
 const btnLimpiar = document.getElementById("limpiar");
 const divContenedor = document.getElementById("contenedor-productos");
 
-var filtros = {};
+let filtros = {};
 
 function actualizarCatalogo() {
     $.ajax({

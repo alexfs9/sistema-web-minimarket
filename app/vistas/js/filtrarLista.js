@@ -6,7 +6,7 @@ const cbPrecio = document.getElementById("precio");
 const btnBuscar = document.getElementById("buscar");
 const btnLimpiar = document.getElementById("limpiar");
 
-var filtros = {};
+let filtros = {};
 
 function actualizarCatalogo() {
     //console.log(filtros);

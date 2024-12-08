@@ -104,6 +104,8 @@ if ($cantidadVariablesRecibidas != 0) {
                                 break;
                         }
                         break;
+                    default:
+                        break;
                 }
             }
         } else {
@@ -140,6 +142,8 @@ if ($cantidadVariablesRecibidas != 0) {
                     break;
                 case 'cerrar-sesion':
                     mostrarVista('CerrarSesion', null, null);
+                    break;
+                default:
                     break;
             }
         }
