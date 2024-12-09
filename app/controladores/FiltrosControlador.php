@@ -24,100 +24,104 @@ class FiltrosControlador {
     }
 
     public function filtrarCatalogo($nombre, $categoria, $precio) {
-        $sqlBase = 'select p.idProducto, p.nombre, p.precio, p.oferta, p.stock,
-        p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria';
-        $columnaNombre = 'p.nombre like ';
-        $columnaCategoria = 'c.categoria = ';
-        $donde = ' where ';
-        $y = ' and ';
-        $ordenPrecio = ' order by precio ';
         $productoDao = new ProductoDao();
-        if (!isset($nombre) && !isset($categoria) && !isset($precio)) {
-            $productos = $productoDao->catalogar();
-        } else {
-            $ambos = false;
-            $sql = $sqlBase;
-            if (isset($nombre) && isset($categoria)) {
-                $ambos = true;
-            }
-            if (isset($nombre) || isset($categoria)) {
-                $sql .= $donde;
-            }
-            if (isset($nombre)) {
-                $sql .= $columnaNombre . '"%' . $nombre . '%"';
-            }
-            if (isset($categoria)) {
-                if ($ambos) {
-                    $sql .= $y;
-                }
-                $sql .= $columnaCategoria . '"' . $categoria . '"';
-            }
-            if (isset($precio)) {
-                $sql .= $ordenPrecio;
-                if ($precio == 1) {
-                    $sql .= 'asc';
-                } else {
-                    $sql .= 'desc';
-                }
-            }
-            $productos = $productoDao->obtenerProductos($sql);
+    
+        if ($this->ningunFiltroAplicadoCatalogo($nombre, $categoria, $precio)) {
+            return $productoDao->catalogar();
         }
-        return $productos;
+    
+        $sql = $this->generarSqlBaseCatalogo($nombre, $categoria);
+    
+        if (isset($precio)) {
+            $sql .= $this->ordenarPorPrecio($precio);
+        }
+    
+        return $productoDao->obtenerProductos($sql);
+    }
+
+    private function ningunFiltroAplicadoCatalogo($nombre, $categoria, $precio) {
+        return !isset($nombre) && !isset($categoria) && !isset($precio);
+    }
+    
+    private function generarSqlBaseCatalogo($nombre, $categoria) {
+        $sqlBase = 'select p.idProducto, p.nombre, p.precio, p.oferta, p.stock, p.imagen' . ' ' .
+            'from productosHabilitados p' . ' ' .
+            'inner join categoria c on p.idCategoria = c.idCategoria';
+        
+        $sql = $sqlBase;
+    
+        if (isset($nombre) || isset($categoria)) {
+            $sql .= ' where';
+        }
+    
+        if (isset($nombre)) {
+            $sql .= ' p.nombre like "%' . $nombre . '%"';
+        }
+    
+        if (isset($categoria)) {
+            $sql .= isset($nombre) ? ' and' : '';
+            $sql .= ' c.categoria = "' . $categoria . '"';
+        }
+    
+        return $sql;
     }
 
     public function filtrarLista($idProducto, $nombre, $categoria, $stock, $precio) {
-        $sqlBase = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock,
-        p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria' . ' ' .
-        'inner join proveedor pr on p.idProveedor = pr.IdProveedor';
-        $columnaNombre = 'p.nombre like ';
-        $columnaCategoria = 'c.categoria = ';
-        $donde = ' where ';
-        $y = ' and ';
-        $ordenStock = ' order by stock ';
-        $ordenPrecio = ' order by precio ';
         $productoDao = new ProductoDao();
-        if (!isset($idProducto) && !isset($nombre) && !isset($categoria) && !isset($stock) && !isset($precio)) {
-            $productos = $productoDao->listar();
+    
+        if ($this->ningunFiltroAplicadoLista($idProducto, $nombre, $categoria, $stock, $precio)) {
+            return $productoDao->listar();
         }
+    
+        $sql = $this->generarSqlBaseLista($idProducto, $nombre, $categoria);
+    
+        if (isset($stock)) {
+            $sql .= $this->ordenarPorStock($stock);
+        }
+    
+        if (isset($precio)) {
+            $sql .= $this->ordenarPorPrecio($precio);
+        }
+    
+        return $productoDao->obtenerProductos($sql);
+    }
+    
+    private function ningunFiltroAplicadoLista($idProducto, $nombre, $categoria, $stock, $precio) {
+        return !isset($idProducto) && !isset($nombre) && !isset($categoria) && !isset($stock) && !isset($precio);
+    }
+    
+    private function generarSqlBaseLista($idProducto, $nombre, $categoria) {
+        $sqlBase = 'select idProducto, p.nombre, c.categoria, pr.proveedor, p.precio, p.stock,
+            p.oferta, p.imagen from productosHabilitados p inner join categoria c on p.idCategoria = c.idCategoria' . ' ' .
+            'inner join proveedor pr on p.idProveedor = pr.IdProveedor';
+        
         if (isset($idProducto)) {
-            $sql = $sqlBase . $donde . 'p.idProducto = ' . $idProducto;
-            $productos = $productoDao->obtenerProductos($sql);
-        } else {
-            $ambos = false;
-            $sql = $sqlBase;
-            if (isset($nombre) && isset($categoria)) {
-                $ambos = true;
-            }
-            if (isset($nombre) || isset($categoria)) {
-                $sql .= $donde;
-            }
-            if (isset($nombre)) {
-                $sql .= $columnaNombre . '"%' . $nombre . '%"';
-            }
-            if (isset($categoria)) {
-                if ($ambos) {
-                    $sql .= $y;
-                }
-                $sql .= $columnaCategoria . '"' . $categoria . '"';
-            }
-            if (isset($stock)) {
-                $sql .= $ordenStock;
-                if ($stock == 1) {
-                    $sql .= 'asc';
-                } else {
-                    $sql .= 'desc';
-                }
-            }
-            if (isset($precio)) {
-                $sql .= $ordenPrecio;
-                if ($precio == 1) {
-                    $sql .= 'asc';
-                } else {
-                    $sql .= 'desc';
-                }
-            }
-            $productos = $productoDao->obtenerProductos($sql);
+            return $sqlBase . ' where p.idProducto = ' . $idProducto;
         }
-        return $productos;
+    
+        $sql = $sqlBase;
+    
+        if (isset($nombre) || isset($categoria)) {
+            $sql .= ' where';
+        }
+    
+        if (isset($nombre)) {
+            $sql .= ' p.nombre like "%' . $nombre . '%"';
+        }
+    
+        if (isset($categoria)) {
+            $sql .= isset($nombre) ? ' and' : '';
+            $sql .= ' c.categoria = "' . $categoria . '"';
+        }
+    
+        return $sql;
+    }
+    
+    private function ordenarPorStock($stock) {
+        return ' order by stock ' . ($stock == 1 ? 'asc' : 'desc');
+    }
+    
+    private function ordenarPorPrecio($precio) {
+        return ' order by precio ' . ($precio == 1 ? 'asc' : 'desc');
     }
 }
