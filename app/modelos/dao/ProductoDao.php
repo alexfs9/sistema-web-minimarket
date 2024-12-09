@@ -22,10 +22,12 @@ class ProductoDao extends Conexion {
             }
             $this->desconectar();
         }
-        return new Producto($datosProducto['idProducto'], $datosProducto['nombre'],
-        $datosProducto['categoria'], $datosProducto['proveedor'],
-        $datosProducto['precio'], $datosProducto['stock'],
-        $datosProducto['oferta'], $datosProducto['imagen']);
+        return new Producto(
+            $datosProducto['idProducto'], $datosProducto['nombre'],
+            $datosProducto['categoria'], $datosProducto['proveedor'],
+            $datosProducto['precio'], $datosProducto['stock'],
+            $datosProducto['oferta'], $datosProducto['imagen']
+        );
     }
 
     public function registrar($producto) {
